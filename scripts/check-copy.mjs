@@ -24,6 +24,18 @@ const PHRASES = [
   'carry out', 'deal with', 'get rid of', 'put together',
 ];
 
+// Claims the owner has ruled out for the site (2026-10-15). Checked in visible text, metadata, JSON-LD and alt text.
+const FORBIDDEN = [
+  [/\bCodex\b/i, 'the Oracle Codex-based migration tool'],
+  [/\b85\s?%/, 'the 85% migration figure'],
+  [/at least 90\s?%|class-level coverage/i, 'the "at least 90% class-level coverage" figure'],
+  [/\b(mentor\w*|pair(?:ed|ing)? with)\b/i, 'mentoring or pairing with the Oracle team'],
+  [/\b\d{1,3}(?:,\d{3})+\s+lines\b|\b90,000\b/i, 'a line count for Odoo Launchpad'],
+  [/\b(owned|led)\b[^.]{0,60}\b(backend infrastructure|smart contracts)\b/i, '"owned"/"led" for xBacked (use "contributed to")'],
+  [/\bauthor\b[^.]{0,30}xbacked-sdk|xbacked-sdk[^.]{0,30}\bauthor\b/i, '"author" of xbacked-sdk (he is a core contributor)'],
+  [/contributors reused|wallet-connection layer/i, 'a wallet layer other contributors reused'],
+];
+
 // Words allowed despite a substring match, because they are proper names or the right technical term.
 const ALLOW = [/ant colony optimization/i];
 
@@ -48,7 +60,12 @@ for (const file of pages) {
     .replace(/&amp;/g, '&')
     .replace(/&#39;|&#x27;/g, "'")
     .replace(/\s+/g, ' ');
-  let text = `${body}\n${meta}\n${jsonld}`;
+  const attrs = [...html.matchAll(/\s(?:alt|title|aria-label)="([^"]*)"/g)].map((m) => m[1]).join('\n');
+  let text = `${body}\n${meta}\n${jsonld}\n${attrs}`;
+  for (const [re, what] of FORBIDDEN) {
+    const m = text.match(re);
+    if (m) fail(file, `ruled-out claim (${what}): "${m[0]}"`);
+  }
   for (const re of ALLOW) text = text.replace(re, '');
 
   if (text.includes('—')) fail(file, 'em dash found');
@@ -77,4 +94,4 @@ if (failures) {
   console.log(`\n${failures} problem(s) in ${pages.length} page(s).`);
   process.exit(1);
 }
-console.log(`✓ ${pages.length} page(s) pass: no em dashes, banned words or phrases, "QA", phone number, or unaccented name.`);
+console.log(`✓ ${pages.length} page(s) pass: no em dashes, banned words or phrases, ruled-out claims, "QA", phone number, or unaccented name.`);

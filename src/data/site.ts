@@ -18,8 +18,8 @@ export const site = {
     lede:
       'I’m a software engineer in Guadalajara. I build multi-agent systems and the infrastructure under them, and I work across the whole stack: React front ends, Node.js and TypeScript services, PostgreSQL, and containers.',
     paragraphs: [
-      'At Oracle I held full responsibility for testing Unbounded Property Graph Queries, a new SQL feature in Oracle RDBMS, from the test specifications through the sign-off that released it. I also proposed a Codex-based tool and helped the team build it; it automated up to 85% of a Java test migration. I paired with the team on it until they could run it without me.',
-      'Before that, at xBacked, I owned the backend infrastructure of a lending protocol and built its CI/CD pipeline, so every merge to main reached production without manual intervention.',
+      'At Oracle I held full responsibility for testing Unbounded Property Graph Queries, a new SQL feature in Oracle RDBMS, from the test specifications through the sign-off that released it. I also ran the Jenkins release gate for each RDBMS label and wrote Java tests with Maven and JUnit that raised test coverage up to 90%.',
+      'Before that, at xBacked, I contributed to the backend infrastructure of a lending protocol and built its CI/CD pipeline, so every merge to main reached production without manual intervention.',
     ],
   },
 
