@@ -1,0 +1,12 @@
+---
+// Direction arrow drawn in currentColor, so it looks the same on every platform and in forced-colors mode.
+// "out" leaves the site, "down" downloads.
+interface Props {
+  dir?: 'out' | 'down';
+}
+const { dir = 'out' } = Astro.props;
+---
+
+<svg class:list={['arrow', `arrow-${dir}`]} viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+  {dir === 'out' ? <path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6" /> : <path d="M8 3v10M3.75 8.75 8 13l4.25-4.25" />}
+</svg>

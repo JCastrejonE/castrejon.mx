@@ -1,0 +1,1117 @@
+/* castrejon.mx: one stylesheet. Apple HIG semantic colors and text styles, adapted for the web. */
+
+/* Newsreader (Production Type, OFL-1.1), display optical size at weight 600, subset to the site's characters.
+   Used for the name, section titles and the two figures only. Body text stays on the system font. */
+@font-face {
+  font-family: "Newsreader Display";
+  src: url(/fonts/newsreader-display-600.woff2) format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Georgia scaled to Newsreader's metrics, so the swap doesn't move the layout. */
+@font-face {
+  font-family: "Newsreader Fallback";
+  src: local("Georgia");
+  size-adjust: 107.08%;
+  ascent-override: 68.64%;
+  descent-override: 24.75%;
+  line-gap-override: 0%;
+}
+
+:root {
+  color-scheme: light dark;
+
+  --background: #ffffff;
+  --secondary-background: #f2f2f7;
+  --label: #000000;
+  /* HIG's rgba(60,60,67,.6) is 3.4:1 on white; Apple's web gray #6e6e73 reaches 5.1:1 (4.6:1 on #f2f2f7). */
+  --secondary-label: #6e6e73;
+  --separator: rgba(60, 60, 67, 0.29);
+  /* The one accent: ink indigo. 9.9:1 on white, 8.9:1 on #f2f2f7. */
+  --link: #3730a3;
+  --link-hover: #4338ca;
+  --on-link: #ffffff;
+  --button-fill: var(--link);
+  --button-fill-hover: var(--link-hover);
+  --tint: color-mix(in srgb, var(--link) 9%, var(--background));
+  --tint-hover: color-mix(in srgb, var(--link) 15%, var(--background));
+  --focus: var(--link);
+
+  --font: -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --display: "Newsreader Display", "Newsreader Fallback", ui-serif, Georgia, serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Text styles in rem, so they follow the browser's font size like Dynamic Type.
+     Newsreader has a smaller x-height than SF Pro, so its sizes sit one step above the HIG values. */
+  --large-title: 2.5rem;    /* 40px, the name */
+  --title-2: 1.5rem;        /* 24px, section titles (reads like SF Title 3 at 20px) */
+  --title-3: 1.25rem;       /* 20px, the lede */
+  --body: 1.0625rem;        /* 17px, also Headline */
+  --subheadline: 0.9375rem; /* 15px */
+  --footnote: 0.8125rem;    /* 13px */
+
+  --measure: 42rem;         /* 672px */
+  --gutter: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #000000;
+    --secondary-background: #1c1c1e;
+    --label: #ffffff;
+    --secondary-label: rgba(235, 235, 245, 0.6);
+    --separator: rgba(84, 84, 88, 0.6);
+    /* 10.5:1 on black, 8.5:1 on #1c1c1e. */
+    --link: #a5b4fc;
+    --link-hover: #c7d2fe;
+    /* A deeper fill than the link color keeps the one filled button calm in dark mode: white text 6.3:1. */
+    --on-link: #ffffff;
+    --button-fill: #4f46e5;
+    --button-fill-hover: #5b54e8;
+    --tint: color-mix(in srgb, var(--link) 14%, var(--background));
+    --tint-hover: color-mix(in srgb, var(--link) 20%, var(--background));
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --secondary-label: #3c3c43;
+    --separator: rgba(60, 60, 67, 0.6);
+  }
+}
+
+@media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+  :root {
+    --secondary-label: rgba(235, 235, 245, 0.85);
+    --separator: rgba(142, 142, 147, 0.8);
+  }
+}
+
+/* Base */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  hanging-punctuation: first;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--label);
+  font-family: var(--font);
+  font-size: var(--body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--link) 22%, transparent);
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+dd {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+p,
+li {
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+.stat-value {
+  font-family: var(--display);
+  font-weight: 600;
+  font-synthesis: none;
+  text-wrap: balance;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: color 150ms ease, background-color 150ms ease, text-decoration-color 150ms ease;
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+/* Links inside running text are always underlined, so color is never the only cue.
+   The underline is the link color at 60%, which stays above 3:1 on every background. */
+p a,
+.bullets a {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: color-mix(in srgb, currentColor 60%, transparent);
+}
+
+p a:hover,
+.bullets a:hover {
+  text-decoration-color: currentColor;
+}
+
+@media (prefers-contrast: more) {
+  p a,
+  .bullets a {
+    text-decoration-color: currentColor;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.footnote,
+.meta {
+  font-size: var(--footnote);
+  line-height: 1.385;
+  color: var(--secondary-label);
+}
+
+.meta {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Direction arrows (Arrow.astro): out of the site, or download. They move 2px on hover. */
+.arrow {
+  display: inline-block;
+  flex: none;
+  width: 0.75em;
+  height: 0.75em;
+  margin-inline-start: 0.3em;
+  vertical-align: -0.05em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Layout: one column on an 8px grid */
+
+main,
+.footer {
+  max-width: calc(var(--measure) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: max(var(--gutter), env(safe-area-inset-left)) max(var(--gutter), env(safe-area-inset-right));
+}
+
+main {
+  padding-block: 4rem 3rem;
+}
+
+@media (min-width: 40em) {
+  :root {
+    --gutter: 24px;
+    --large-title: 3rem; /* 48px */
+  }
+  main {
+    padding-block: 7rem 4rem;
+  }
+}
+
+/* Intro */
+
+h1 {
+  font-size: var(--large-title);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+
+.lede {
+  margin-top: 1.25rem;
+  font-size: var(--title-3);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.intro p + p:not(.lede) {
+  margin-top: 1rem;
+}
+
+.intro p.lede + p {
+  margin-top: 1.5rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+  margin-top: 2rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 1.25rem;
+  border-radius: 980px;
+  font-size: var(--subheadline);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.button-filled {
+  background: var(--button-fill);
+  color: var(--on-link);
+}
+
+.button-filled:hover {
+  background: var(--button-fill-hover);
+  color: var(--on-link);
+}
+
+.button-tinted {
+  background: var(--tint);
+  color: var(--link);
+}
+
+.button-tinted:hover {
+  background: var(--tint-hover);
+  color: var(--link);
+}
+
+.button:focus-visible {
+  border-radius: 980px;
+}
+
+.action-link {
+  display: inline-flex;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  font-size: var(--subheadline);
+  font-weight: 600;
+}
+
+/* A summary for readers who scan: a row of three on wide screens, label and value pairs on phones. */
+.facts {
+  margin-top: 2.5rem;
+  border-block: 1px solid var(--separator);
+}
+
+.fact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 1rem;
+  padding-block: 0.75rem;
+}
+
+.fact + .fact {
+  border-top: 1px solid var(--separator);
+}
+
+.fact dt {
+  flex: 0 0 5.5rem;
+  font-size: var(--footnote);
+  line-height: 1.385;
+  color: var(--secondary-label);
+}
+
+.fact dd {
+  flex: 1 1 10rem;
+  min-width: 0;
+  font-size: var(--subheadline);
+  line-height: 1.4;
+}
+
+.fact-value {
+  font-weight: 600;
+}
+
+.fact-detail {
+  color: var(--secondary-label);
+}
+
+.fact-value + .fact-detail::before,
+.fact-part + .fact-part::before {
+  content: " · ";
+}
+
+@media (min-width: 46em) {
+  .facts {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr 1fr;
+  }
+  .fact {
+    display: block;
+    padding: 1rem 1.25rem 1.125rem;
+  }
+  .fact:first-child {
+    padding-left: 0;
+  }
+  .fact:last-child {
+    padding-right: 0;
+  }
+  .fact + .fact {
+    border-top: 0;
+    border-left: 1px solid var(--separator);
+  }
+  .fact dd {
+    margin-top: 0.25rem;
+  }
+  .fact-value,
+  .fact-detail {
+    display: block;
+  }
+  .fact-part {
+    display: block;
+  }
+  .fact-value + .fact-detail::before,
+  .fact-part + .fact-part::before {
+    content: none;
+  }
+}
+
+/* Sections: a serif title, a hairline that runs to the edge, and optional meta on the right */
+
+section {
+  margin-top: 4rem;
+}
+
+@media (min-width: 40em) {
+  section {
+    margin-top: 5rem;
+  }
+}
+
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.section-rule {
+  flex: 1 1 2rem;
+  height: 1px;
+  background: var(--separator);
+}
+
+h2 {
+  font-size: var(--title-2);
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+}
+
+section > p + p,
+section > p + .group {
+  margin-top: 1rem;
+}
+
+/* Now: dated with a capsule */
+
+.capsule {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4375rem;
+  padding: 0.1875rem 0.75rem;
+  border: 1px solid var(--separator);
+  border-radius: 980px;
+  background: var(--background);
+  font-size: var(--footnote);
+  line-height: 1.385;
+  font-weight: 500;
+  color: var(--secondary-label);
+  white-space: nowrap;
+}
+
+.capsule::before {
+  content: "";
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 50%;
+  background: var(--link);
+}
+
+.bullets li {
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.bullets li + li {
+  margin-top: 0.875rem;
+}
+
+.bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0.125rem;
+  top: 0.66em;
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 50%;
+  background: var(--link);
+}
+
+/* Selected work: rows that light up as a whole, with the arrow revealed on hover */
+
+.works {
+  margin-inline: -12px;
+}
+
+.work {
+  position: relative;
+  padding: 1rem 12px;
+  border-radius: 14px;
+  transition: background-color 150ms ease;
+}
+
+.work:first-child {
+  margin-top: -12px;
+}
+
+.work + .work::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  inset-inline: 12px;
+  border-top: 1px solid var(--separator);
+  transition: opacity 150ms ease;
+}
+
+.work-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0 1rem;
+}
+
+.work-title {
+  font-size: var(--body);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* The name is the row's link; its overlay makes the whole row clickable, and it keeps a 44px-tall box. */
+.work-title a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-block: -11px;
+  color: var(--label);
+}
+
+.work-title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+}
+
+.work-title .arrow {
+  color: var(--link);
+}
+
+/* Links inside the description sit above the row's overlay. */
+.work-text a {
+  position: relative;
+  z-index: 1;
+}
+
+@media (hover: hover) {
+  .work:hover {
+    background: var(--secondary-background);
+  }
+  .work:hover::before,
+  .work:hover + .work::before {
+    opacity: 0;
+  }
+  .work:hover .work-title a {
+    color: var(--link);
+  }
+}
+
+.work:has(.work-title a:focus-visible) {
+  background: var(--secondary-background);
+}
+
+.work-text {
+  margin-top: 0.375rem;
+  font-size: var(--subheadline);
+  line-height: 1.45;
+  color: var(--secondary-label);
+}
+
+/* Two figures from the case study, set like Apple's stat callouts and divided by a hairline.
+   Each figure carries its own left hairline; the container clips the one that starts a line. */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 1rem;
+  margin-top: 1rem;
+  margin-left: -1.25rem;
+  overflow: hidden;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 12rem;
+  min-width: 0;
+  margin-left: -1px;
+  padding-inline: 1.25rem;
+  border-left: 1px solid var(--separator);
+}
+
+.stat:first-child {
+  flex-basis: 10rem;
+}
+
+.stat-value {
+  font-size: 2.125rem;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-caption {
+  margin-top: 0.25rem;
+  font-size: var(--footnote);
+  line-height: 1.385;
+  color: var(--secondary-label);
+}
+
+.tags {
+  margin-top: 0.625rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: var(--secondary-label);
+}
+
+/* Experience: a hairline rail with a dot per role; the current role's dot carries the accent */
+
+.timeline {
+  --rail-x: 0rem;
+  --dot: 0.5625rem;  /* 9px */
+  --dot-y: 0.5625rem; /* middle of the first line (the years, on phones) */
+}
+
+.tl-item {
+  position: relative;
+  padding-left: 1.75rem;
+  padding-bottom: 1.75rem;
+}
+
+.tl-item:last-child {
+  padding-bottom: 0;
+}
+
+.tl-item::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--rail-x) + var(--dot) / 2 - 0.5px);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--separator);
+}
+
+.tl-item:first-child::before {
+  top: var(--dot-y);
+}
+
+.tl-item:last-child::before {
+  bottom: auto;
+  height: var(--dot-y);
+}
+
+.tl-item::after {
+  content: "";
+  position: absolute;
+  left: var(--rail-x);
+  top: calc(var(--dot-y) - var(--dot) / 2);
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: 50%;
+  background: var(--background);
+  box-shadow: inset 0 0 0 1.5px var(--secondary-label);
+}
+
+.tl-current::after {
+  background: var(--link);
+  box-shadow: 0 0 0 4px var(--tint-hover);
+}
+
+.tl-years {
+  font-size: var(--footnote);
+  line-height: 1.385;
+  color: var(--secondary-label);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.tl-title {
+  font-size: var(--body);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.tl-role {
+  font-size: var(--subheadline);
+  line-height: 1.4;
+}
+
+.tl-note {
+  margin-top: 0.125rem;
+  font-size: var(--subheadline);
+  line-height: 1.45;
+  color: var(--secondary-label);
+}
+
+@media (min-width: 40em) {
+  .timeline {
+    --rail-x: 7.5rem;
+    --dot-y: 0.6875rem; /* middle of the company line */
+  }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    align-items: baseline;
+    padding-left: 0;
+  }
+  .tl-years {
+    padding-right: 1.25rem;
+    text-align: right;
+  }
+  .tl-body {
+    padding-left: 1.75rem;
+  }
+}
+
+/* Education sits below the rail, so the rail's years stay in order. */
+.edu-label {
+  margin-top: 2rem;
+  margin-bottom: 0.25rem;
+  font-size: var(--footnote);
+  line-height: 1.385;
+  color: var(--secondary-label);
+}
+
+.tl-edu {
+  padding-bottom: 0;
+}
+
+.tl-edu::before,
+.tl-edu::after {
+  content: none;
+}
+
+@media (min-width: 40em) {
+  .edu-label {
+    padding-left: 9.25rem;
+  }
+  .tl-edu .tl-years {
+    padding-right: 1.25rem;
+  }
+}
+
+.ventures {
+  margin-top: 2.25rem;
+  font-size: var(--subheadline);
+  line-height: 1.45;
+  color: var(--secondary-label);
+}
+
+.cv {
+  margin-top: 1.25rem;
+}
+
+/* Contact: the one grouped list, iOS inset-grouped style */
+
+.group {
+  margin-top: 1rem;
+  border-radius: 12px;
+  background: var(--secondary-background);
+  overflow: hidden;
+}
+
+.group > li + li {
+  border-top: 1px solid var(--separator);
+}
+
+.cell {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.125rem 1rem;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  color: var(--label);
+  font-size: var(--subheadline);
+  line-height: 1.4;
+}
+
+.cell-label {
+  color: var(--label);
+}
+
+.cell-value {
+  min-width: 0;
+  color: var(--secondary-label);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.cell-link[href] .cell-value {
+  color: var(--link);
+}
+
+.cell-link {
+  border-radius: 0;
+}
+
+/* A light tint keeps link text above 4.5:1 on hover (8.2:1 light, 7.7:1 dark).
+   Only link cells get it, and their values and arrows are in the link color. */
+.cell-link[href]:hover {
+  background: color-mix(in srgb, var(--secondary-background) 96%, var(--label));
+}
+
+.cell-link:focus-visible {
+  outline-offset: -2px;
+  border-radius: 12px;
+}
+
+/* Footer */
+
+.footer {
+  padding-block: 2.5rem 3rem;
+}
+
+.footer::before {
+  content: "";
+  display: block;
+  border-top: 1px solid var(--separator);
+  margin-bottom: 1rem;
+}
+
+/* 404 */
+
+.not-found {
+  min-height: 70vh;
+}
+
+.not-found p {
+  margin-top: 1.25rem;
+  font-size: var(--title-3);
+  line-height: 1.4;
+}
+
+/* Motion: only small hover shifts, and none when the reader asks for less */
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .arrow {
+    transition: translate 150ms ease;
+  }
+  .action-link:hover .arrow,
+  .work:hover .work-title .arrow,
+  .work-title a:focus-visible .arrow,
+  .cell-link[href]:hover .arrow {
+    translate: 2px -2px;
+  }
+  .action-link:hover .arrow-down,
+  .button-tinted:hover .arrow-down {
+    translate: 0 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}
+
+/* Print: a clean one-page summary with URLs written out */
+
+@media print {
+  @page {
+    margin: 8mm 12mm;
+  }
+
+  :root {
+    --background: #fff;
+    --secondary-background: #fff;
+    --label: #000;
+    --secondary-label: #333;
+    --separator: #ccc;
+    --link: #000;
+    --large-title: 2.125rem;
+  }
+
+  html {
+    font-size: 66.667%;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+    line-height: 1.4;
+  }
+
+  main {
+    max-width: none;
+    padding: 0;
+  }
+
+  .lede {
+    margin-top: 0.5rem;
+    font-size: var(--body);
+  }
+
+  .intro p + p:not(.lede),
+  .intro p.lede + p {
+    margin-top: 0.375rem;
+  }
+
+  section {
+    margin-top: 1rem;
+  }
+
+  .section-head {
+    margin-bottom: 0.375rem;
+    break-after: avoid;
+  }
+
+  h2 {
+    font-size: 1.375rem;
+  }
+
+  .capsule {
+    padding: 0;
+    border: 0;
+  }
+
+  .capsule::before {
+    display: none;
+  }
+
+  .bullets {
+    padding-left: 1.25rem;
+    list-style: disc;
+  }
+
+  .bullets li {
+    padding-left: 0;
+  }
+
+  .bullets li + li {
+    margin-top: 0.25rem;
+  }
+
+  .bullets li::before {
+    display: none;
+  }
+
+  .works {
+    margin: 0;
+  }
+
+  .work,
+  .work:first-child {
+    margin: 0;
+    padding: 0.25rem 0;
+    break-inside: avoid;
+  }
+
+  .work + .work::before {
+    inset-inline: 0;
+  }
+
+  .work-text {
+    margin-top: 0;
+    line-height: 1.35;
+  }
+
+  /* The figures print as one line of text. */
+  .stats,
+  .stat,
+  .stat-value,
+  .stat-caption {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: inherit;
+    font-size: var(--subheadline);
+    font-weight: 400;
+    letter-spacing: 0;
+    color: #333;
+  }
+
+  .stats {
+    overflow: visible;
+  }
+
+  .stats::before {
+    content: " ";
+  }
+
+  .stat + .stat::before {
+    content: " · ";
+  }
+
+  .timeline {
+    --rail-x: 0rem;
+  }
+
+  .tl-item {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    align-items: baseline;
+    padding: 0.25rem 0;
+    break-inside: avoid;
+  }
+
+  .tl-item::before,
+  .tl-item::after {
+    display: none;
+  }
+
+  .tl-years {
+    order: 2;
+    text-align: right;
+    padding: 0;
+  }
+
+  .tl-item {
+    grid-template-columns: 1fr auto;
+  }
+
+  .tl-body {
+    padding: 0;
+  }
+
+  /* One line per role under the company: title · note */
+  .tl-role,
+  .tl-note {
+    display: inline;
+    line-height: 1.35;
+  }
+
+  .tl-role + .tl-note::before {
+    content: " · ";
+  }
+
+  .ventures {
+    margin-top: 0.5rem;
+    color: #000;
+  }
+
+  .arrow,
+  .edu-label,
+  .tags,
+  .cv,
+  .actions,
+  .facts,
+  .footer {
+    display: none;
+  }
+
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  /* Write out the URLs a reader needs; the repo links inside project lines would only add noise. */
+  .bullets a[href^="http"]::after,
+  .ventures a[href^="http"]::after,
+  .work-title a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    position: static;
+    font-weight: 400;
+    font-size: 0.9em;
+    color: #333;
+  }
+
+  .work-title a {
+    display: inline;
+    min-height: 0;
+    margin: 0;
+  }
+
+  p a,
+  .bullets a {
+    text-decoration: none;
+  }
+
+  #contact > p {
+    display: none;
+  }
+
+  .group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 2rem;
+    margin-top: 0;
+    background: none;
+    border-radius: 0;
+  }
+
+  .cell {
+    min-height: 0;
+    padding: 0.125rem 0;
+    justify-content: flex-start;
+  }
+
+  .cell-label {
+    min-width: 7em;
+    color: #333;
+  }
+
+  .cell-value,
+  .cell-link .cell-value {
+    color: #000;
+    text-align: left;
+  }
+
+  .group > li + li {
+    border: 0;
+  }
+}

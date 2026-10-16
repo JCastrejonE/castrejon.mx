@@ -1,0 +1,14 @@
+<script is:inline>
+  document.querySelectorAll('[data-email]').forEach(function (a) {
+    var r = function (s) { return s.split('').reverse().join(''); };
+    var address = r(a.dataset.u) + '@' + r(a.dataset.d);
+    a.href = 'mailto:' + address;
+    var text = a.querySelector('[data-email-text]');
+    if (text) {
+      // A <wbr> lets a long address break before the @ instead of mid-word.
+      text.textContent = r(a.dataset.u);
+      text.appendChild(document.createElement('wbr'));
+      text.appendChild(document.createTextNode('@' + r(a.dataset.d)));
+    }
+  });
+</script>

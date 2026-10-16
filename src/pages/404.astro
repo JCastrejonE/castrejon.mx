@@ -1,0 +1,11 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+
+<Base title={`${site.notFound.title} · ${site.name}`} path="/404" noindex>
+  <main class="not-found">
+    <h1>{site.notFound.title}</h1>
+    <p set:html={site.notFound.text} />
+  </main>
+</Base>

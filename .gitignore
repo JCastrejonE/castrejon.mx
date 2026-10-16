@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+*.log
+lighthouse*.json
+# Not part of the site (no headshot by design)
+headshot_JC.jpg
