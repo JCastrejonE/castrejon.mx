@@ -268,6 +268,14 @@ h1 {
   margin-top: 1rem;
 }
 
+/* The bio fills the column edge to edge, so it ends where the name ends.
+   On phones the name wraps, so the bio stays ragged-right there. */
+@media (min-width: 40em) {
+  .intro > p {
+    text-align: justify;
+  }
+}
+
 .intro p.lede + p {
   margin-top: 1.5rem;
 }
