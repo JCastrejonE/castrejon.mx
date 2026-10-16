@@ -1,0 +1,65 @@
+---
+import Base from '../../layouts/Base.astro';
+import Section from '../../components/Section.astro';
+import Arrow from '../../components/Arrow.astro';
+import { site } from '../../data/site';
+import { getEssays, formatDate } from '../../lib/research';
+import '../../styles/research.css';
+
+const { research } = site;
+const essays = await getEssays();
+const groups = research.groups
+  .map((g) => ({ ...g, essays: essays.filter((e) => e.data.group === g.key) }))
+  .filter((g) => g.essays.length > 0);
+
+const url = new URL('/research/', site.url).href;
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: research.title,
+  description: research.description,
+  url,
+  inLanguage: site.lang,
+  author: { '@type': 'Person', name: site.name, url: site.url },
+  hasPart: essays.map((e) => ({
+    '@type': 'ScholarlyArticle',
+    headline: e.data.title,
+    url: new URL(`/research/${e.id}/`, site.url).href,
+  })),
+};
+---
+
+<Base title={`${research.title} · ${site.name}`} description={research.description} path="/research/" ogType="website" jsonld={jsonld}>
+  <main class="research">
+    <nav class="backbar" aria-label="Breadcrumb">
+      <a class="back" href="/"><Arrow dir="back" />{research.labels.home}</a>
+    </nav>
+    <header class="research-head">
+      <h1>{research.title}</h1>
+      {research.intro.map((p) => <p class="research-intro">{p}</p>)}
+    </header>
+
+    {
+      groups.map((g) => (
+        <Section id={g.id} title={g.label}>
+          <ul class="works entries" role="list">
+            {g.essays.map((e) => (
+              <li class="work entry">
+                <div class="work-head">
+                  <h3 class="work-title">
+                    <a href={`/research/${e.id}/`}>{e.data.title}</a>
+                  </h3>
+                  <time class="meta" datetime={e.data.date}>{formatDate(e.data.date)}</time>
+                </div>
+                <p class="entry-context">{e.data.context}</p>
+                <p class="work-text">{e.data.summary}</p>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      ))
+    }
+  </main>
+
+  <footer class="footer footnote">{site.footer}</footer>
+</Base>

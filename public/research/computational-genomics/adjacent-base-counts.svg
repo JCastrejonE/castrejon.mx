@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="cg3" width="434" height="282" viewBox="0 0 434 282" role="img" aria-labelledby="cg3-t cg3-d">
+<title id="cg3-t">Adjacent base pairs in the input sequence</title>
+<desc id="cg3-d">Four by four table of adjacent base pairs in the 3891-nucleotide input sequence, rows the preceding base, columns the following base. Row A: A 615, C 148, G 276, T 539, total 1578. Row C: A 178, C 50, G 23, T 143, total 394. Row G: A 249, C 77, G 130, T 173, total 629. Row T: A 536, C 119, G 200, T 434, total 1289. Column totals: A 1578, C 394, G 629, T 1289. 3890 pairs in all. Shading grows with the count.</desc>
+<style>
+.cg3 text{font-family:-apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;font-size:13px}
+.cg3 .ink{fill:#000}
+.cg3 .sec{fill:#6e6e73}
+.cg3 .hair{stroke:rgba(60,60,67,.29);fill:none}
+.cg3 .emp{fill:none;stroke:rgba(60,60,67,.29)}
+.cg3 .old{fill:#d1d1d6}
+.cg3 .oldt{fill:#000}
+.cg3 .new{fill:#3730a3}
+.cg3 .newt{fill:#fff}
+.cg3 .acc{fill:#3730a3}
+.cg3 .lt{font-weight:600;text-anchor:middle}
+.cg3 .b{font-weight:600}
+.cg3 .ar{stroke:#6e6e73;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+</style>
+<text class="sec" x="231" y="18" text-anchor="middle">Following base</text>
+<text class="ink b" x="126" y="48" text-anchor="middle">A</text>
+<text class="ink b" x="196" y="48" text-anchor="middle">C</text>
+<text class="ink b" x="266" y="48" text-anchor="middle">G</text>
+<text class="ink b" x="336" y="48" text-anchor="middle">T</text>
+<text class="sec" x="424" y="48" text-anchor="end">Total</text>
+<text class="sec" transform="translate(20 153) rotate(-90)" text-anchor="middle">Preceding base</text>
+<text class="ink b" x="76" y="89" text-anchor="middle">A</text>
+<rect class="acc" x="92" y="62" width="68" height="44" rx="3" fill-opacity="0.62"/>
+<text class="ink" x="126" y="89" text-anchor="middle" style="font-size:15px">615</text>
+<rect class="acc" x="162" y="62" width="68" height="44" rx="3" fill-opacity="0.19"/>
+<text class="ink" x="196" y="89" text-anchor="middle" style="font-size:15px">148</text>
+<rect class="acc" x="232" y="62" width="68" height="44" rx="3" fill-opacity="0.31"/>
+<text class="ink" x="266" y="89" text-anchor="middle" style="font-size:15px">276</text>
+<rect class="acc" x="302" y="62" width="68" height="44" rx="3" fill-opacity="0.55"/>
+<text class="ink" x="336" y="89" text-anchor="middle" style="font-size:15px">539</text>
+<text class="sec" x="424" y="89" text-anchor="end">1578</text>
+<text class="ink b" x="76" y="135" text-anchor="middle">C</text>
+<rect class="acc" x="92" y="108" width="68" height="44" rx="3" fill-opacity="0.22"/>
+<text class="ink" x="126" y="135" text-anchor="middle" style="font-size:15px">178</text>
+<rect class="acc" x="162" y="108" width="68" height="44" rx="3" fill-opacity="0.11"/>
+<text class="ink" x="196" y="135" text-anchor="middle" style="font-size:15px">50</text>
+<rect class="acc" x="232" y="108" width="68" height="44" rx="3" fill-opacity="0.08"/>
+<text class="ink" x="266" y="135" text-anchor="middle" style="font-size:15px">23</text>
+<rect class="acc" x="302" y="108" width="68" height="44" rx="3" fill-opacity="0.19"/>
+<text class="ink" x="336" y="135" text-anchor="middle" style="font-size:15px">143</text>
+<text class="sec" x="424" y="135" text-anchor="end">394</text>
+<text class="ink b" x="76" y="181" text-anchor="middle">G</text>
+<rect class="acc" x="92" y="154" width="68" height="44" rx="3" fill-opacity="0.29"/>
+<text class="ink" x="126" y="181" text-anchor="middle" style="font-size:15px">249</text>
+<rect class="acc" x="162" y="154" width="68" height="44" rx="3" fill-opacity="0.13"/>
+<text class="ink" x="196" y="181" text-anchor="middle" style="font-size:15px">77</text>
+<rect class="acc" x="232" y="154" width="68" height="44" rx="3" fill-opacity="0.18"/>
+<text class="ink" x="266" y="181" text-anchor="middle" style="font-size:15px">130</text>
+<rect class="acc" x="302" y="154" width="68" height="44" rx="3" fill-opacity="0.22"/>
+<text class="ink" x="336" y="181" text-anchor="middle" style="font-size:15px">173</text>
+<text class="sec" x="424" y="181" text-anchor="end">629</text>
+<text class="ink b" x="76" y="227" text-anchor="middle">T</text>
+<rect class="acc" x="92" y="200" width="68" height="44" rx="3" fill-opacity="0.55"/>
+<text class="ink" x="126" y="227" text-anchor="middle" style="font-size:15px">536</text>
+<rect class="acc" x="162" y="200" width="68" height="44" rx="3" fill-opacity="0.17"/>
+<text class="ink" x="196" y="227" text-anchor="middle" style="font-size:15px">119</text>
+<rect class="acc" x="232" y="200" width="68" height="44" rx="3" fill-opacity="0.24"/>
+<text class="ink" x="266" y="227" text-anchor="middle" style="font-size:15px">200</text>
+<rect class="acc" x="302" y="200" width="68" height="44" rx="3" fill-opacity="0.46"/>
+<text class="ink" x="336" y="227" text-anchor="middle" style="font-size:15px">434</text>
+<text class="sec" x="424" y="227" text-anchor="end">1289</text>
+<line class="hair" x1="92" x2="424" y1="254" y2="254"/>
+<text class="sec" x="84" y="272" text-anchor="end">Total</text>
+<text class="sec" x="126" y="272" text-anchor="middle">1578</text>
+<text class="sec" x="196" y="272" text-anchor="middle">394</text>
+<text class="sec" x="266" y="272" text-anchor="middle">629</text>
+<text class="sec" x="336" y="272" text-anchor="middle">1289</text>
+<text class="ink b" x="424" y="272" text-anchor="end">3890</text>
+</svg>

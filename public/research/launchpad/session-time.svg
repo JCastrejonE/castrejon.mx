@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="lptw" width="672" height="100" viewBox="0 0 672 100" role="img" aria-labelledby="lptw-t lptw-d">
+<title id="lptw-t">Where the wall clock of one measured run went</title>
+<desc id="lptw-d">Part-to-whole bar for the five agent sessions of spec 0105 (claude-opus-4-8), 2,241 seconds of wall clock in total: model inference 1,545 seconds (69%), tools running 308 seconds, and 388 seconds the source table does not attribute to either. Source: docs/AGENT-PERFORMANCE.md, baseline table; the 388 seconds are the difference of the printed totals.</desc>
+<style>
+.lptw text{font-family:-apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;}
+.lptw .ink{fill:#000}
+.lptw .sec{fill:#6e6e73}
+.lptw .hair{stroke:rgba(60,60,67,.29);stroke-width:1;fill:none}
+.lptw .acc{fill:#3730a3}
+.lptw .gry{fill:#8e8e93}
+.lptw .gry2{fill:#c7c7cc}
+.lptw .on-acc{fill:#fff}
+.lptw .on-gry{fill:#000}
+.lptw .on-gry2{fill:#000}
+.lptw .b{font-weight:600}
+.lptw .num{font-variant-numeric:tabular-nums}
+
+</style>
+<text class="ink b" x="16" y="18" font-size="14"><tspan x="16" dy="0">Spec 0105, five agent sessions: 2,241 s of wall clock</tspan></text><path class="acc" d="M20 30H454.5V60H20A4 4 0 0 1 16 56V34A4 4 0 0 1 20 30Z"/><text class="on-acc num b" x="24" y="49.7" font-size="13">1,545 s (69%)</text><path class="gry" d="M456.5 30H543.9V60H456.5Z"/><text class="on-gry num" x="464.5" y="49.7" font-size="13">308 s</text><path class="gry2" d="M545.9 30H652A4 4 0 0 1 656 34V56A4 4 0 0 1 652 60H545.9Z"/><text class="on-gry2 num" x="553.9" y="49.7" font-size="13">388 s</text><rect class="acc" x="16" y="77" width="10" height="10" rx="2"/><text class="sec" x="32" y="86" font-size="13">Model inference</text><rect class="gry" x="156" y="77" width="10" height="10" rx="2"/><text class="sec" x="172" y="86" font-size="13">Tools running</text><rect class="gry2" x="279.2" y="77" width="10" height="10" rx="2"/><text class="sec" x="295.2" y="86" font-size="13">Not attributed in the source table</text>
+</svg>

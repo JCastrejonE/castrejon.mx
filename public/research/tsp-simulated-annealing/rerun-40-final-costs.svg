@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="524" viewBox="0 0 600 524" role="img" aria-labelledby="t d">
+<title id="t">Final costs by parameter set, 40 cities (re-run)</title>
+<desc id="d">Histograms of the final cost of the feasible runs for seeds 100 to 199 on 40 cities, re-run in 2026, for the three parameter sets of the paper's figures and for the committed code.</desc>
+<style>
+text{font-family:-apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;fill:#000}
+.sec{fill:#6e6e73}
+.hair{stroke:rgba(60,60,67,.29);stroke-width:1;fill:none}
+.ctx{fill:#c7c7cc}
+.acc{stroke:#3730a3}
+.accf{fill:#3730a3}
+.band{fill:#3730a3;fill-opacity:.28;stroke:#3730a3;stroke-width:.75}
+.ring{stroke:#fff}
+.inkline{stroke:#000}
+.lab{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}</style>
+<text x="16" y="26" font-size="16" font-weight="600">Paper, first figure: L 1000, φ 0.95</text>
+<text class="sec" x="584" y="26" font-size="15" text-anchor="end">62 of 100 feasible</text>
+<path class="accf" d="M38 114V114Q38 112 40 112H55.1Q57.1 112 57.1 114V114Z"/>
+<path class="accf" d="M59.1 114V110Q59.1 106 63.1 106H74.1Q78.1 106 78.1 110V114Z"/>
+<path class="accf" d="M80.1 114V104Q80.1 100 84.1 100H95.1Q99.1 100 99.1 104V114Z"/>
+<path class="accf" d="M101.1 114V92Q101.1 88 105.1 88H116.2Q120.2 88 120.2 92V114Z"/>
+<path class="accf" d="M122.2 114V98Q122.2 94 126.2 94H137.2Q141.2 94 141.2 98V114Z"/>
+<path class="accf" d="M143.2 114V100Q143.2 96 147.2 96H158.3Q162.3 96 162.3 100V114Z"/>
+<path class="accf" d="M164.3 114V94Q164.3 90 168.3 90H179.3Q183.3 90 183.3 94V114Z"/>
+<path class="accf" d="M185.3 114V114Q185.3 112 187.3 112H202.3Q204.3 112 204.3 114V114Z"/>
+<path class="accf" d="M206.3 114V114Q206.3 112 208.3 112H223.4Q225.4 112 225.4 114V114Z"/>
+<path class="accf" d="M227.4 114V114Q227.4 110 231.4 110H242.4Q246.4 110 246.4 114V114Z"/>
+<path class="accf" d="M248.4 114V114Q248.4 112 250.4 112H265.4Q267.4 112 267.4 114V114Z"/>
+<path class="accf" d="M311.5 114V114Q311.5 112 313.5 112H328.6Q330.6 112 330.6 114V114Z"/>
+<text x="110.7" y="83" font-size="15" text-anchor="middle">13</text>
+<path class="hair" d="M16 114.5H584"/>
+<text x="16" y="144" font-size="16" font-weight="600">Paper, second figure: L 6000, φ 0.95</text>
+<text class="sec" x="584" y="144" font-size="15" text-anchor="end">96 of 100 feasible</text>
+<path class="accf" d="M17 232V224Q17 220 21 220H32Q36 220 36 224V232Z"/>
+<path class="accf" d="M38 232V214Q38 210 42 210H53.1Q57.1 210 57.1 214V232Z"/>
+<path class="accf" d="M59.1 232V194Q59.1 190 63.1 190H74.1Q78.1 190 78.1 194V232Z"/>
+<path class="accf" d="M80.1 232V206Q80.1 202 84.1 202H95.1Q99.1 202 99.1 206V232Z"/>
+<path class="accf" d="M101.1 232V212Q101.1 208 105.1 208H116.2Q120.2 208 120.2 212V232Z"/>
+<path class="accf" d="M122.2 232V220Q122.2 216 126.2 216H137.2Q141.2 216 141.2 220V232Z"/>
+<path class="accf" d="M143.2 232V224Q143.2 220 147.2 220H158.3Q162.3 220 162.3 224V232Z"/>
+<path class="accf" d="M164.3 232V230Q164.3 226 168.3 226H179.3Q183.3 226 183.3 230V232Z"/>
+<path class="accf" d="M185.3 232V232Q185.3 228 189.3 228H200.3Q204.3 228 204.3 232V232Z"/>
+<path class="accf" d="M227.4 232V232Q227.4 228 231.4 228H242.4Q246.4 228 246.4 232V232Z"/>
+<path class="accf" d="M269.4 232V228Q269.4 224 273.4 224H284.5Q288.5 224 288.5 228V232Z"/>
+<path class="accf" d="M290.5 232V232Q290.5 228 294.5 228H305.5Q309.5 228 309.5 232V232Z"/>
+<path class="accf" d="M311.5 232V230Q311.5 226 315.5 226H326.6Q330.6 226 330.6 230V232Z"/>
+<path class="accf" d="M332.6 232V232Q332.6 230 334.6 230H349.6Q351.6 230 351.6 232V232Z"/>
+<text x="68.6" y="185" font-size="15" text-anchor="middle">21</text>
+<path class="hair" d="M16 232.5H584"/>
+<text x="16" y="262" font-size="16" font-weight="600">Paper, third figure: L 6000, φ 0.99</text>
+<text class="sec" x="584" y="262" font-size="15" text-anchor="end">100 of 100 feasible</text>
+<path class="accf" d="M17 350V334Q17 330 21 330H32Q36 330 36 334V350Z"/>
+<path class="accf" d="M38 350V304Q38 300 42 300H53.1Q57.1 300 57.1 304V350Z"/>
+<path class="accf" d="M59.1 350V294Q59.1 290 63.1 290H74.1Q78.1 290 78.1 294V350Z"/>
+<path class="accf" d="M80.1 350V320Q80.1 316 84.1 316H95.1Q99.1 316 99.1 320V350Z"/>
+<path class="accf" d="M101.1 350V338Q101.1 334 105.1 334H116.2Q120.2 334 120.2 338V350Z"/>
+<path class="accf" d="M122.2 350V350Q122.2 346 126.2 346H137.2Q141.2 346 141.2 350V350Z"/>
+<path class="accf" d="M185.3 350V350Q185.3 348 187.3 348H202.3Q204.3 348 204.3 350V350Z"/>
+<path class="accf" d="M227.4 350V350Q227.4 346 231.4 346H242.4Q246.4 346 246.4 350V350Z"/>
+<path class="accf" d="M248.4 350V348Q248.4 344 252.4 344H263.4Q267.4 344 267.4 348V350Z"/>
+<path class="accf" d="M269.4 350V350Q269.4 348 271.4 348H286.5Q288.5 348 288.5 350V350Z"/>
+<path class="accf" d="M290.5 350V350Q290.5 348 292.5 348H307.5Q309.5 348 309.5 350V350Z"/>
+<text x="68.6" y="285" font-size="15" text-anchor="middle">30</text>
+<path class="hair" d="M16 350.5H584"/>
+<text x="16" y="380" font-size="16" font-weight="600">Committed code: L 3000, φ 0.95</text>
+<text class="sec" x="584" y="380" font-size="15" text-anchor="end">96 of 100 feasible</text>
+<path class="accf" d="M17 468V410Q17 406 21 406H32Q36 406 36 410V468Z"/>
+<path class="accf" d="M38 468V430Q38 426 42 426H53.1Q57.1 426 57.1 430V468Z"/>
+<path class="accf" d="M59.1 468V446Q59.1 442 63.1 442H74.1Q78.1 442 78.1 446V468Z"/>
+<path class="accf" d="M80.1 468V442Q80.1 438 84.1 438H95.1Q99.1 438 99.1 442V468Z"/>
+<path class="accf" d="M101.1 468V468Q101.1 464 105.1 464H116.2Q120.2 464 120.2 468V468Z"/>
+<path class="accf" d="M122.2 468V466Q122.2 462 126.2 462H137.2Q141.2 462 141.2 466V468Z"/>
+<path class="accf" d="M185.3 468V468Q185.3 466 187.3 466H202.3Q204.3 466 204.3 468V468Z"/>
+<path class="accf" d="M206.3 468V468Q206.3 466 208.3 466H223.4Q225.4 466 225.4 468V468Z"/>
+<path class="accf" d="M227.4 468V468Q227.4 466 229.4 466H244.4Q246.4 466 246.4 468V468Z"/>
+<path class="accf" d="M248.4 468V468Q248.4 466 250.4 466H265.4Q267.4 466 267.4 468V468Z"/>
+<path class="accf" d="M269.4 468V468Q269.4 466 271.4 466H286.5Q288.5 466 288.5 468V468Z"/>
+<path class="accf" d="M290.5 468V468Q290.5 466 292.5 466H307.5Q309.5 466 309.5 468V468Z"/>
+<path class="accf" d="M311.5 468V468Q311.5 464 315.5 464H326.6Q330.6 464 330.6 468V468Z"/>
+<path class="accf" d="M332.6 468V468Q332.6 466 334.6 466H349.6Q351.6 466 351.6 468V468Z"/>
+<path class="accf" d="M353.6 468V468Q353.6 466 355.6 466H370.6Q372.6 466 372.6 468V468Z"/>
+<path class="accf" d="M564 468V468Q564 466 566 466H581Q583 466 583 468V468Z"/>
+<text x="26.5" y="401" font-size="15" text-anchor="middle">31</text>
+<path class="hair" d="M16 468.5H584"/>
+<path class="hair" d="M16 468v5"/>
+<text class="sec" x="16" y="488" font-size="15" text-anchor="middle">0.30</text>
+<path class="hair" d="M121.2 468v5"/>
+<text class="sec" x="121.2" y="488" font-size="15" text-anchor="middle">0.35</text>
+<path class="hair" d="M226.4 468v5"/>
+<text class="sec" x="226.4" y="488" font-size="15" text-anchor="middle">0.40</text>
+<path class="hair" d="M331.6 468v5"/>
+<text class="sec" x="331.6" y="488" font-size="15" text-anchor="middle">0.45</text>
+<path class="hair" d="M436.7 468v5"/>
+<text class="sec" x="436.7" y="488" font-size="15" text-anchor="middle">0.50</text>
+<path class="hair" d="M541.9 468v5"/>
+<text class="sec" x="541.9" y="488" font-size="15" text-anchor="middle">0.55</text>
+<text class="sec" x="300" y="518" font-size="15" text-anchor="middle">Final cost of feasible runs (bins of 0.01)</text>
+</svg>

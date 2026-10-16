@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="lptn" width="343" height="154" viewBox="0 0 343 154" role="img" aria-labelledby="lptn-t lptn-d">
+<title id="lptn-t">Where the wall clock of one measured run went</title>
+<desc id="lptn-d">Part-to-whole bar for the five agent sessions of spec 0105 (claude-opus-4-8), 2,241 seconds of wall clock in total: model inference 1,545 seconds (69%), tools running 308 seconds, and 388 seconds the source table does not attribute to either. Source: docs/AGENT-PERFORMANCE.md, baseline table; the 388 seconds are the difference of the printed totals.</desc>
+<style>
+.lptn text{font-family:-apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;}
+.lptn .ink{fill:#000}
+.lptn .sec{fill:#6e6e73}
+.lptn .hair{stroke:rgba(60,60,67,.29);stroke-width:1;fill:none}
+.lptn .acc{fill:#3730a3}
+.lptn .gry{fill:#8e8e93}
+.lptn .gry2{fill:#c7c7cc}
+.lptn .on-acc{fill:#fff}
+.lptn .on-gry{fill:#000}
+.lptn .on-gry2{fill:#000}
+.lptn .b{font-weight:600}
+.lptn .num{font-variant-numeric:tabular-nums}
+
+</style>
+<text class="ink b" x="12" y="18" font-size="13"><tspan x="12" dy="0">Spec 0105, five agent sessions: 2,241 s of</tspan><tspan x="12" dy="18">wall clock</tspan></text><path class="acc" d="M16 48H229.2V74H16A4 4 0 0 1 12 70V52A4 4 0 0 1 16 48Z"/><text class="on-acc num b" x="20" y="65.3" font-size="12">1,545 s (69%)</text><path class="gry" d="M231.2 48H274.5V74H231.2Z"/><path class="gry2" d="M276.5 48H327A4 4 0 0 1 331 52V70A4 4 0 0 1 327 74H276.5Z"/><text class="on-gry2 num" x="284.5" y="65.3" font-size="12">388 s</text><rect class="acc" x="12" y="91" width="10" height="10" rx="2"/><text class="sec" x="28" y="100" font-size="12">Model inference, <tspan class="ink num">1,545 s (69%)</tspan></text><rect class="gry" x="12" y="111" width="10" height="10" rx="2"/><text class="sec" x="28" y="120" font-size="12">Tools running, <tspan class="ink num">308 s</tspan></text><rect class="gry2" x="12" y="131" width="10" height="10" rx="2"/><text class="sec" x="28" y="140" font-size="12">Not attributed in the source table, <tspan class="ink num">388 s</tspan></text>
+</svg>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#03060e">
+  <meta name="description" content="A living slime-mould garden: tens of thousands of agents weaving glowing networks.">
+  <title>Mycelia</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="view" aria-label="Slime mould simulation. Drag to feed, shift-drag to repel, click to burst."></canvas>
+
+  <aside id="panel" class="panel ui" aria-label="Controls">
+    <header class="panel-head">
+      <button id="panel-toggle" class="panel-toggle" type="button" aria-expanded="true" aria-controls="panel-body" title="Toggle controls">
+        <span class="mark" aria-hidden="true"></span>
+        <span class="titles">
+          <span class="title">Mycelia</span>
+          <span class="subtitle">a garden of rival slime moulds</span>
+        </span>
+        <span class="chev" aria-hidden="true"></span>
+      </button>
+    </header>
+
+    <div id="panel-body" class="panel-body">
+      <div class="row two">
+        <label class="field">
+          <span class="lbl">Preset</span>
+          <select id="preset"></select>
+        </label>
+        <label class="field">
+          <span class="lbl">Palette</span>
+          <select id="palette"></select>
+        </label>
+      </div>
+
+      <div id="sliders" class="sliders"></div>
+
+      <div class="brush" role="group" aria-label="Brush">
+        <span class="lbl">Brush</span>
+        <div class="seg">
+          <button type="button" id="brush-feed" aria-pressed="true" title="Drag to feed">Feed</button>
+          <button type="button" id="brush-scatter" aria-pressed="false" title="Drag to scatter (or Shift / right-drag)">Scatter</button>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button type="button" id="btn-reseed" title="Reseed (R)">Reseed</button>
+        <button type="button" id="btn-pause" title="Pause (Space)" aria-pressed="false">Pause</button>
+        <button type="button" id="btn-mirror" title="Mirror painting (M)" aria-pressed="false">Mirror</button>
+        <button type="button" id="btn-save" title="Save PNG (S)">Save</button>
+      </div>
+
+      <p id="motion-note" class="note" hidden>Reduced motion is on — running slower. Raise <em>Speed</em> to taste.</p>
+      <p class="keys">Space pause · R reseed · 1–7 presets · P palette · M mirror · S save · H hide</p>
+    </div>
+  </aside>
+
+  <div id="readout" class="readout ui" aria-live="off"></div>
+
+  <div id="hint" class="hint ui" role="note">
+    <div class="hint-inner">
+      <span><b>Drag</b> to feed</span>
+      <span class="fine"><b>Shift / right-drag</b> to scatter</span>
+      <span class="coarse"><b>Scatter</b> brush in the panel</span>
+      <span class="fine"><b>Click</b> to burst</span>
+      <span class="coarse"><b>Tap</b> to burst</span>
+      <span class="k"><b>M</b> mirror · <b>P</b> palette · <b>1–7</b> presets · <b>H</b> hide</span>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

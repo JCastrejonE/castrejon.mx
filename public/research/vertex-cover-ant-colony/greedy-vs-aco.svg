@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 542" width="440" height="542" role="img" aria-labelledby="t d">
+<title id="t">Greedy heuristic and ant colony cover sizes on five instances</title>
+<desc id="d">Re-run in 2026 of the 2019 solver, 100 seeds per instance, plotted as cover size above the exact optimum from an integer program. prueba.txt (15 vertices, 24 edges): greedy 8, ant colony 6–7 (23 seeds at 6, 77 seeds at 7), exact optimum 6. g.txt (20 vertices, 55 edges): greedy 13, ant colony 8–10 (3 seeds at 8, 95 seeds at 9, 2 seeds at 10), exact optimum 8. grafica2.txt (100 vertices, 174 edges): greedy 54, ant colony 54 (100 seeds at 54), exact optimum 53. trampa2-100.txt (100 vertices, 2548 edges): greedy 74, ant colony 52–74 (62 seeds at 52, 8 seeds at 53, 30 seeds at 74), exact optimum 52. trampa200.txt (200 vertices, 4555 edges): greedy 133, ant colony 68 (100 seeds at 68), exact optimum 68.</desc>
+<style>
+text{font-family:-apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;font-size:14px}
+.ink{fill:#000}
+.sec{fill:#6e6e73}
+.b{font-weight:600}
+.hair{stroke:rgba(60,60,67,.29);stroke-width:1;fill:none}
+.edge{stroke:#6e6e73;stroke-width:1.25;fill:none}
+.acc{fill:#3730a3}
+.accS{stroke:#3730a3;fill:none}
+.gry{fill:#6e6e73}
+.gryS{stroke:#6e6e73;fill:none}
+.onacc{fill:#fff}
+</style>
+<rect class="gry" x="16" y="12" width="9" height="9" rx="1.5"/>
+<text class="ink" x="32" y="21">Greedy heuristic (one deterministic run)</text>
+<line class="accS" x1="16" y1="38" x2="30" y2="38" stroke-width="3" stroke-linecap="round"/>
+<circle class="acc" cx="16" cy="38" r="4.5"/><circle class="acc" cx="30" cy="38" r="4.5"/>
+<text class="ink" x="42" y="42">Ant colony: every cost reached in 100 seeds</text>
+<g>
+<text x="16" y="76"><tspan class="ink b">prueba.txt</tspan><tspan class="sec" dx="8">15 vertices, 24 edges, the report’s instance</tspan></text>
+<text class="sec" x="16" y="94">Exact optimum 6; the colony reached it in 23 of 100 seeds</text>
+<line class="edge" x1="16" y1="104" x2="16" y2="144"/>
+<line class="hair" x1="110" y1="104" x2="110" y2="144"/>
+<line class="hair" x1="204" y1="104" x2="204" y2="144"/>
+<line class="hair" x1="298" y1="104" x2="298" y2="144"/>
+<line class="hair" x1="392" y1="104" x2="392" y2="144"/>
+<g><title>prueba.txt: greedy cover has 8 vertices (optimum 6)</title><rect class="gry" x="136.8" y="109.5" width="9" height="9" rx="1.5"/><text class="ink" x="151.3" y="118.5">8</text></g>
+<g><title>prueba.txt: ant colony, 23 seeds at 6, 77 seeds at 7</title><line class="accS" x1="16" y1="134" x2="78.7" y2="134" stroke-width="3" stroke-linecap="round"/><circle class="acc" cx="16" cy="134" r="4.5"/><circle class="acc" cx="78.7" cy="134" r="4.5"/><text class="ink" x="88.7" y="138.5">6–7</text></g>
+</g>
+<g>
+<text x="16" y="162"><tspan class="ink b">g.txt</tspan><tspan class="sec" dx="8">20 vertices, 55 edges</tspan></text>
+<text class="sec" x="16" y="180">Exact optimum 8; the colony reached it in 3 of 100 seeds</text>
+<line class="edge" x1="16" y1="190" x2="16" y2="230"/>
+<line class="hair" x1="110" y1="190" x2="110" y2="230"/>
+<line class="hair" x1="204" y1="190" x2="204" y2="230"/>
+<line class="hair" x1="298" y1="190" x2="298" y2="230"/>
+<line class="hair" x1="392" y1="190" x2="392" y2="230"/>
+<g><title>g.txt: greedy cover has 13 vertices (optimum 8)</title><rect class="gry" x="246.5" y="195.5" width="9" height="9" rx="1.5"/><text class="ink" x="261" y="204.5">13</text></g>
+<g><title>g.txt: ant colony, 3 seeds at 8, 95 seeds at 9, 2 seeds at 10</title><line class="accS" x1="16" y1="220" x2="110" y2="220" stroke-width="3" stroke-linecap="round"/><circle class="acc" cx="16" cy="220" r="4.5"/><circle class="acc" cx="63" cy="220" r="4.5"/><circle class="acc" cx="110" cy="220" r="4.5"/><text class="ink" x="120" y="224.5">8–10</text></g>
+</g>
+<g>
+<text x="16" y="248"><tspan class="ink b">grafica2.txt</tspan><tspan class="sec" dx="8">100 vertices, 174 edges</tspan></text>
+<text class="sec" x="16" y="266">Exact optimum 53; the colony reached it in 0 of 100 seeds</text>
+<line class="edge" x1="16" y1="276" x2="16" y2="316"/>
+<line class="hair" x1="110" y1="276" x2="110" y2="316"/>
+<line class="hair" x1="204" y1="276" x2="204" y2="316"/>
+<line class="hair" x1="298" y1="276" x2="298" y2="316"/>
+<line class="hair" x1="392" y1="276" x2="392" y2="316"/>
+<g><title>grafica2.txt: greedy cover has 54 vertices (optimum 53)</title><rect class="gry" x="18.6" y="281.5" width="9" height="9" rx="1.5"/><text class="ink" x="33.1" y="290.5">54</text></g>
+<g><title>grafica2.txt: ant colony, 100 seeds at 54</title><circle class="acc" cx="23.1" cy="306" r="4.5"/><text class="ink" x="33.1" y="310.5">54</text></g>
+</g>
+<g>
+<text x="16" y="334"><tspan class="ink b">trampa2-100.txt</tspan><tspan class="sec" dx="8">100 vertices, 2,548 edges</tspan></text>
+<text class="sec" x="16" y="352">Exact optimum 52; the colony reached it in 62 of 100 seeds</text>
+<line class="edge" x1="16" y1="362" x2="16" y2="402"/>
+<line class="hair" x1="110" y1="362" x2="110" y2="402"/>
+<line class="hair" x1="204" y1="362" x2="204" y2="402"/>
+<line class="hair" x1="298" y1="362" x2="298" y2="402"/>
+<line class="hair" x1="392" y1="362" x2="392" y2="402"/>
+<g><title>trampa2-100.txt: greedy cover has 74 vertices (optimum 52)</title><rect class="gry" x="170.6" y="367.5" width="9" height="9" rx="1.5"/><text class="ink" x="185.1" y="376.5">74</text></g>
+<g><title>trampa2-100.txt: ant colony, 62 seeds at 52, 8 seeds at 53, 30 seeds at 74</title><line class="accS" x1="16" y1="392" x2="175.1" y2="392" stroke-width="3" stroke-linecap="round"/><circle class="acc" cx="16" cy="392" r="4.5"/><circle class="acc" cx="23.2" cy="392" r="4.5"/><circle class="acc" cx="175.1" cy="392" r="4.5"/><text class="ink" x="185.1" y="396.5">52–74</text></g>
+</g>
+<g>
+<text x="16" y="420"><tspan class="ink b">trampa200.txt</tspan><tspan class="sec" dx="8">200 vertices, 4,555 edges</tspan></text>
+<text class="sec" x="16" y="438">Exact optimum 68; the colony reached it in 100 of 100 seeds</text>
+<line class="edge" x1="16" y1="448" x2="16" y2="488"/>
+<line class="hair" x1="110" y1="448" x2="110" y2="488"/>
+<line class="hair" x1="204" y1="448" x2="204" y2="488"/>
+<line class="hair" x1="298" y1="448" x2="298" y2="488"/>
+<line class="hair" x1="392" y1="448" x2="392" y2="488"/>
+<g><title>trampa200.txt: greedy cover has 133 vertices (optimum 68)</title><rect class="gry" x="370.9" y="453.5" width="9" height="9" rx="1.5"/><text class="ink" x="385.4" y="462.5">133</text></g>
+<g><title>trampa200.txt: ant colony, 100 seeds at 68</title><circle class="acc" cx="16" cy="478" r="4.5"/><text class="ink" x="26" y="482.5">68</text></g>
+</g>
+<text class="sec" x="14" y="508" text-anchor="start">optimum</text>
+<text class="sec" x="110" y="508" text-anchor="middle">+25%</text>
+<text class="sec" x="204" y="508" text-anchor="middle">+50%</text>
+<text class="sec" x="298" y="508" text-anchor="middle">+75%</text>
+<text class="sec" x="392" y="508" text-anchor="middle">+100%</text>
+<text class="sec" x="16" y="530">Cover size above the exact optimum. Every vertex weight is 1.</text>
+</svg>

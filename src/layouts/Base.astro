@@ -7,9 +7,20 @@ interface Props {
   description?: string;
   path?: string;
   noindex?: boolean;
+  // 'profile' for the home page; 'article' for research essays, whose page adds its own article meta in the "head" slot.
+  ogType?: 'profile' | 'website' | 'article';
+  // Structured data for this page; the home page uses the Person below.
+  jsonld?: Record<string, unknown>;
 }
 
-const { title = site.title, description = site.description, path = '/', noindex = false } = Astro.props;
+const {
+  title = site.title,
+  description = site.description,
+  path = '/',
+  noindex = false,
+  ogType = 'profile',
+  jsonld,
+} = Astro.props;
 const canonical = new URL(path, site.url).href;
 const ogImage = new URL('/og.png', site.url).href;
 const ogAlt = `${site.name}. ${site.ogLines.join(' ')}`;
@@ -52,7 +63,7 @@ const person = {
     {
       !noindex && (
         <>
-        <meta property="og:type" content="profile" />
+        <meta property="og:type" content={ogType} />
         <meta property="og:site_name" content={site.name} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
@@ -62,14 +73,15 @@ const person = {
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={ogAlt} />
         <meta property="og:locale" content={site.locale} />
-        <meta property="profile:first_name" content="Juan Carlos" />
-        <meta property="profile:last_name" content="Castrejón Estrada" />
+        {ogType === 'profile' && <meta property="profile:first_name" content="Juan Carlos" />}
+        {ogType === 'profile' && <meta property="profile:last_name" content="Castrejón Estrada" />}
+        <slot name="head" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={ogImage} />
         <meta name="twitter:image:alt" content={ogAlt} />
-        <script type="application/ld+json" set:html={JSON.stringify(person)} />
+        <script type="application/ld+json" set:html={JSON.stringify(jsonld ?? person)} />
         </>
       )
     }

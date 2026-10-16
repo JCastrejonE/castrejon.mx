@@ -24,6 +24,8 @@ export const site = {
   },
 
   sections: { now: 'Now', work: 'Selected work', experience: 'Experience', contact: 'Contact' },
+  // A quiet link to the /research index, beside the Selected work heading.
+  allResearch: { label: 'All research', href: '/research/' },
 
   // A short summary under the intro, for readers who scan. Values are taken from cv.md.
   facts: [
@@ -50,7 +52,7 @@ export const site = {
       name: 'launchpad',
       href: 'https://github.com/JCastrejonE/launchpad',
       kind: 'Case study',
-      line: 'A public case study of Odoo Launchpad, which Claude agents built almost entirely under my direction.',
+      line: 'A public case study of Odoo Launchpad, which Claude agents built almost entirely under my direction. I wrote up the <a href="/research/launchpad/">findings</a>.',
       stats: [
         { value: '225', caption: 'logged defects' },
         { value: '53%', caption: 'found by running the real system' },
@@ -72,11 +74,11 @@ export const site = {
       tags: ['TypeScript', 'Reach', 'Algorand'],
     },
     {
-      name: 'Heuristic solvers',
-      href: 'https://github.com/JCastrejonE?tab=repositories',
-      kind: 'Research · UNAM, 2019',
-      line: 'Command-line solvers for the <a href="https://github.com/JCastrejonE/TSP_SimulatedAnnealing">traveling salesman problem</a> with simulated annealing, <a href="https://github.com/JCastrejonE/MWVCP_AntColony">minimum weight vertex cover</a> with ant colonies, and <a href="https://github.com/JCastrejonE/BPP_Reincarnation">bin packing</a>.',
-      tags: ['C++', 'Meson'],
+      name: 'Academic research',
+      href: '/research/#academic',
+      kind: 'Research · UNAM, 2019–2023',
+      line: 'Four projects from UNAM’s Facultad de Ciencias, re-run in 2026 and written up here: the <a href="/research/tsp-simulated-annealing/">traveling salesman problem</a> with simulated annealing, <a href="/research/vertex-cover-ant-colony/">minimum weight vertex cover</a> with ant colonies, <a href="/research/bin-packing-reincarnation/">bin packing</a>, and a 2023 <a href="/research/computational-genomics/">cellular-automaton model</a> of protein domains.',
+      tags: ['C++', 'Python'],
     },
   ] as {
     name: string;
@@ -124,6 +126,30 @@ export const site = {
     facts: 'Summary',
     cv: 'CV',
     education: 'Education',
+  },
+
+  // The /research section: its index page and the labels the essay pages use.
+  research: {
+    title: 'Research',
+    description:
+      'Write-ups of my research: what I measured while building software with agents, and my academic projects at UNAM.',
+    intro: [
+      'This page collects the write-ups of my research, each one with its data and the repository behind it.',
+      'The first group reports what I measured while I built software with agents, and the second presents the projects I completed at the Facultad de Ciencias of UNAM.',
+    ],
+    groups: [
+      { key: 'agents', id: 'agents', label: 'Agents and software engineering' },
+      { key: 'academic', id: 'academic', label: 'Academic projects' },
+    ] as { key: 'agents' | 'academic'; id: string; label: string }[],
+    labels: {
+      home: 'Home',
+      back: 'Research',
+      repository: 'Repository',
+      abstract: 'Abstract',
+      toc: 'On this page',
+      links: 'Links',
+      table: 'Table',
+    },
   },
 
   footer: '© 2026 Juan Carlos Castrejón Estrada',

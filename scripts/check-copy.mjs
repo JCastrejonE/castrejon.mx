@@ -1,6 +1,8 @@
 // Lints the built pages' visible copy and metadata against the voice and accuracy rules.
 // Run after a build: npm run build && npm run check:copy
+// It reads every .html file under dist/, except the live bake-off pages, which are exhibits hosted unmodified.
 import { readFileSync, readdirSync } from 'node:fs';
+import { join, relative, sep } from 'node:path';
 
 // voice-dna.md §3A, plus the §3B–§3E phrases most likely to slip in.
 const BANNED = `delve realm harness unlock tapestry paradigm cutting-edge revolutionize landscape intricate intricacies
@@ -39,7 +41,18 @@ const FORBIDDEN = [
 // Words allowed despite a substring match, because they are proper names or the right technical term.
 const ALLOW = [/ant colony optimization/i];
 
-const pages = readdirSync('dist').filter((f) => f.endsWith('.html'));
+const SKIP = [join('dist', 'research', 'setup-bake-off', 'live')];
+
+function walk(dir) {
+  return readdirSync(dir, { withFileTypes: true }).flatMap((d) => {
+    const p = join(dir, d.name);
+    if (SKIP.some((s) => p === s || p.startsWith(s + sep))) return [];
+    if (d.isDirectory()) return walk(p);
+    return d.isFile() && d.name.endsWith('.html') ? [relative('dist', p)] : [];
+  });
+}
+
+const pages = walk('dist').sort();
 let failures = 0;
 const fail = (file, msg) => {
   failures++;
@@ -47,7 +60,7 @@ const fail = (file, msg) => {
 };
 
 for (const file of pages) {
-  const html = readFileSync(`dist/${file}`, 'utf8');
+  const html = readFileSync(join('dist', file), 'utf8');
   const meta = [...html.matchAll(/<(?:meta|title)[^>]*?(?:content="([^"]*)"|>([^<]*)<\/title>)/g)]
     .map((m) => m[1] ?? m[2] ?? '')
     .join('\n');

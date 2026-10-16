@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Mycelium — a living Physarum field</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%226%22 fill=%22none%22 stroke=%22%232fd3b5%22 stroke-width=%222%22/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="stage" aria-label="Generative slime-mold simulation. Move the pointer to lure the organism."></canvas>
+
+<div id="hud" role="status">
+  <h1>Mycelium</h1>
+  <p class="sub"><span id="agents">0</span> agents following each other's trails</p>
+  <p class="preset"><span id="presetNum">1</span> · <span id="presetName">Membrane</span> <span id="auto" class="pill">auto</span></p>
+  <ul class="keys">
+    <li><b>move</b> lure</li>
+    <li><b>drag</b> feed</li>
+    <li><b>shift / right-drag</b> repel</li>
+    <li><b>click</b> spore burst</li>
+    <li><b>wheel</b> brush size</li>
+    <li><b>1–7</b> behaviour</li>
+    <li><b>C</b> colour · <b>R</b> reseed</li>
+    <li><b>A</b> autopilot · <b>space</b> pause</li>
+    <li><b>S</b> save image · <b>H</b> hide</li>
+  </ul>
+</div>
+<div id="brush"></div>
+<div id="toast"></div>
+
+<script src="main.js"></script>
+</body>
+</html>

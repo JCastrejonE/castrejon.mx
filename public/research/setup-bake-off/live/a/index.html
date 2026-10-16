@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campo de flujo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <canvas id="flow" aria-label="Campo de flujo generativo: partículas luminosas que siguen un campo de ruido curl y responden al puntero"></canvas>
+  <aside id="help" class="help">
+    <h1>Campo de flujo</h1>
+    <ul>
+      <li><b>Mover</b> el puntero arrastra el flujo</li>
+      <li><b>Mantener pulsado</b> crea un remolino · <kbd>Shift</kbd> invierte el giro</li>
+      <li><b>Clic derecho</b> o pulsación larga planta un atractor</li>
+      <li><kbd>Alt</kbd> + clic planta un repulsor</li>
+      <li><kbd>Espacio</kbd> pausa · <kbd>R</kbd> nueva semilla · <kbd>P</kbd> paleta</li>
+      <li><kbd>C</kbd> borra atractores · <kbd>S</kbd> guarda PNG</li>
+      <li><kbd>+</kbd> / <kbd>-</kbd> densidad · <kbd>H</kbd> oculta esta ayuda</li>
+    </ul>
+    <p id="status" class="status"></p>
+  </aside>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

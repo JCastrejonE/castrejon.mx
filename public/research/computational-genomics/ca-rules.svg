@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="cg4" width="440" height="370" viewBox="0 0 440 370" role="img" aria-labelledby="cg4-t cg4-d">
+<title id="cg4-t">The four update rules of the automaton</title>
+<desc id="cg4-d">The four update rules of the automaton, each shown as a cell and its two neighbors at step t and the middle cell at step t + 1. Rule A, inheritance: a filled cell X stays X. Rule B, front-to-back evolution: an empty cell with a filled left neighbor X and an empty right neighbor takes a state drawn from row X of F2B. Rule C, back-to-front evolution: an empty cell with an empty left neighbor and a filled right neighbor X takes a state drawn from row X of B2F. Rule D, return to inanimation: an empty cell with two empty neighbors stays empty.</desc>
+<style>
+.cg4 text{font-family:-apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;font-size:13px}
+.cg4 .ink{fill:#000}
+.cg4 .sec{fill:#6e6e73}
+.cg4 .hair{stroke:rgba(60,60,67,.29);fill:none}
+.cg4 .emp{fill:none;stroke:rgba(60,60,67,.29)}
+.cg4 .old{fill:#d1d1d6}
+.cg4 .oldt{fill:#000}
+.cg4 .new{fill:#3730a3}
+.cg4 .newt{fill:#fff}
+.cg4 .acc{fill:#3730a3}
+.cg4 .lt{font-weight:600;text-anchor:middle}
+.cg4 .b{font-weight:600}
+.cg4 .ar{stroke:#6e6e73;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+</style>
+<text class="sec" x="61.0" y="16" text-anchor="middle">Step t</text>
+<text class="sec" x="163" y="16" text-anchor="middle">Step t + 1</text>
+<text class="ink b" x="20" y="44">Rule A, inheritance</text>
+<rect class="emp" x="20.5" y="54.5" width="25" height="25" rx="3"/>
+<text class="sec" x="33" y="71" text-anchor="middle" style="font-size:11px">any</text>
+<rect class="old" x="48" y="54" width="26" height="26" rx="3"/><text class="oldt lt" x="61" y="71.5">X</text>
+<rect class="emp" x="76.5" y="54.5" width="25" height="25" rx="3"/>
+<text class="sec" x="89" y="71" text-anchor="middle" style="font-size:11px">any</text>
+<path class="ar" d="M112 67H140M135 63L140 67L135 71"/>
+<rect class="old" x="150" y="54" width="26" height="26" rx="3"/><text class="oldt lt" x="163" y="71.5">X</text>
+<text class="sec" x="190" y="71.5">A filled cell keeps its state</text>
+<text class="ink b" x="20" y="120">Rule B, front-to-back evolution</text>
+<rect class="old" x="20" y="130" width="26" height="26" rx="3"/><text class="oldt lt" x="33" y="147.5">X</text>
+<rect class="emp" x="48.5" y="130.5" width="25" height="25" rx="3"/>
+<text class="sec lt" x="61" y="147.5">∅</text>
+<rect class="emp" x="76.5" y="130.5" width="25" height="25" rx="3"/>
+<text class="sec lt" x="89" y="147.5">∅</text>
+<path class="ar" d="M112 143H140M135 139L140 143L135 147"/>
+<rect class="new" x="150" y="130" width="26" height="26" rx="3"/><text class="newt lt" x="163" y="147.5">?</text>
+<text class="sec" x="190" y="147.5">Drawn from row X of F2B</text>
+<text class="ink b" x="20" y="196">Rule C, back-to-front evolution</text>
+<rect class="emp" x="20.5" y="206.5" width="25" height="25" rx="3"/>
+<text class="sec lt" x="33" y="223.5">∅</text>
+<rect class="emp" x="48.5" y="206.5" width="25" height="25" rx="3"/>
+<text class="sec lt" x="61" y="223.5">∅</text>
+<rect class="old" x="76" y="206" width="26" height="26" rx="3"/><text class="oldt lt" x="89" y="223.5">X</text>
+<path class="ar" d="M112 219H140M135 215L140 219L135 223"/>
+<rect class="new" x="150" y="206" width="26" height="26" rx="3"/><text class="newt lt" x="163" y="223.5">?</text>
+<text class="sec" x="190" y="223.5">Drawn from row X of B2F</text>
+<text class="ink b" x="20" y="272">Rule D, return to inanimation</text>
+<rect class="emp" x="20.5" y="282.5" width="25" height="25" rx="3"/>
+<text class="sec lt" x="33" y="299.5">∅</text>
+<rect class="emp" x="48.5" y="282.5" width="25" height="25" rx="3"/>
+<text class="sec lt" x="61" y="299.5">∅</text>
+<rect class="emp" x="76.5" y="282.5" width="25" height="25" rx="3"/>
+<text class="sec lt" x="89" y="299.5">∅</text>
+<path class="ar" d="M112 295H140M135 291L140 295L135 299"/>
+<rect class="emp" x="150.5" y="282.5" width="25" height="25" rx="3"/>
+<text class="sec lt" x="163" y="299.5">∅</text>
+<text class="sec" x="190" y="299.5">The cell stays empty</text>
+<text class="sec" x="20" y="342">X is any filled state. Each rule shows a cell and its two neighbors</text>
+<text class="sec" x="20" y="360">at step t, and the same cell at step t + 1.</text>
+</svg>

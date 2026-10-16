@@ -58,6 +58,7 @@ const { sections, labels, contact } = site;
     </Section>
 
     <Section id="work" title={sections.work}>
+      <a slot="aside" class="aside-link" href={site.allResearch.href}>{site.allResearch.label}</a>
       <ul class="works" role="list">
         {
           site.work.map((w) => (
@@ -66,7 +67,7 @@ const { sections, labels, contact } = site;
                 <h3 class="work-title">
                   <a href={w.href}>
                     {w.name}
-                    <Arrow />
+                    {w.href.startsWith('http') && <Arrow />}
                   </a>
                 </h3>
                 <span class="meta">{w.kind}</span>
@@ -158,3 +159,20 @@ const { sections, labels, contact } = site;
   <footer class="footer footnote">{site.footer}</footer>
   <EmailScript />
 </Base>
+
+<style is:global>
+  /* Beside the Selected work heading: a 44px target that keeps the heading row at its height. */
+  .aside-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-block: -8px;
+    font-size: var(--footnote);
+    font-weight: 500;
+  }
+  @media print {
+    .aside-link {
+      display: none;
+    }
+  }
+</style>

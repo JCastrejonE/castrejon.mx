@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07080b">
+<meta name="description" content="A slime-mold (Physarum) simulation that grows a glowing transit map between the stations you place.">
+<title>Physarum Transit</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="stage">
+  <canvas id="gl" aria-hidden="true"></canvas>
+  <canvas id="overlay" role="img" tabindex="0" aria-label="Slime-mold network"></canvas>
+  <noscript><p class="noscript">This living transit map is grown by a slime-mold simulation and needs JavaScript and a canvas-capable browser.</p></noscript>
+</main>
+
+<div id="ui">
+  <header id="brand" aria-hidden="true">
+    <div class="brand-title">PHYSARUM</div>
+    <div class="brand-sub">A LIVING TRANSIT MAP</div>
+  </header>
+
+  <div id="hud" aria-hidden="true">
+    <div id="hud1"></div>
+    <div id="hud2"></div>
+    <div id="hud3"></div>
+  </div>
+
+  <div id="topbar">
+    <button id="helpBtn" class="icon-btn" type="button" aria-label="Help and controls" title="Help (?)">
+      <span aria-hidden="true">?</span>
+    </button>
+    <button id="panelToggle" class="icon-btn" type="button" aria-label="Tune the simulation" aria-expanded="false" aria-controls="panel" title="Tune">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+        <line x1="3" y1="5" x2="15" y2="5"/><circle cx="7" cy="5" r="1.8" fill="#0c0e12"/>
+        <line x1="3" y1="9" x2="15" y2="9"/><circle cx="12" cy="9" r="1.8" fill="#0c0e12"/>
+        <line x1="3" y1="13" x2="15" y2="13"/><circle cx="5.5" cy="13" r="1.8" fill="#0c0e12"/>
+      </svg>
+    </button>
+  </div>
+
+  <section id="panel" class="glass" hidden aria-label="Simulation controls">
+    <div class="panel-grip" aria-hidden="true"></div>
+    <div class="panel-head">
+      <h2>Tune</h2>
+      <button id="panelClose" class="icon-btn small" type="button" aria-label="Close controls">&times;</button>
+    </div>
+
+    <div class="group mobile-only" role="group" aria-labelledby="modeLbl">
+      <div class="group-label" id="modeLbl">One-finger drag paints</div>
+      <div class="seg" id="modeSeg">
+        <button type="button" data-mode="station" aria-pressed="true">Station</button>
+        <button type="button" data-mode="lake" aria-pressed="false">Lake</button>
+        <button type="button" data-mode="seed" aria-pressed="false">Seed</button>
+      </div>
+    </div>
+
+    <div class="group" role="group" aria-labelledby="presetLbl">
+      <div class="group-label" id="presetLbl">Preset</div>
+      <div class="chips" id="presetChips"></div>
+    </div>
+
+    <div class="group" role="group" aria-labelledby="speciesLbl">
+      <div class="group-label" id="speciesLbl">Species</div>
+      <div class="seg" id="speciesSeg">
+        <button type="button" data-species="1" aria-pressed="true">1</button>
+        <button type="button" data-species="2" aria-pressed="false">2</button>
+        <button type="button" data-species="3" aria-pressed="false">3</button>
+      </div>
+    </div>
+
+    <div class="group" id="sliders"></div>
+
+    <div class="actions">
+      <button type="button" id="bReseed">Reseed</button>
+      <button type="button" id="bClear">Clear</button>
+      <button type="button" id="bEvolve" aria-pressed="false">Evolve</button>
+      <button type="button" id="bPoster">Poster</button>
+      <button type="button" id="bShare">Share</button>
+      <button type="button" id="bSound" aria-pressed="false">Sound</button>
+    </div>
+  </section>
+
+  <div id="hint" class="pill" aria-hidden="true"></div>
+  <div id="growing" class="pill" hidden>growing&hellip;</div>
+  <button id="playBtn" type="button" hidden>
+    <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1.5v11l9-5.5z" fill="currentColor"/></svg>
+    <span>Play simulation</span>
+  </button>
+  <div id="toasts" aria-live="polite" aria-atomic="false"></div>
+  <div id="sr" class="sr-only" aria-live="polite"></div>
+</div>
+
+<dialog id="help" aria-modal="true" aria-labelledby="helpTitle" class="glass">
+  <div class="help-head">
+    <h2 id="helpTitle">Physarum &mdash; a living transit map</h2>
+    <button id="helpClose" class="icon-btn small" type="button" aria-label="Close help">&times;</button>
+  </div>
+  <p class="lede">In 2010, Tero and colleagues set oat flakes out in the pattern of the cities around Tokyo, and the slime mold <i>Physarum polycephalum</i> grew a network close to the real rail system. The same year Jeff Jones published a model of the mold built from simple agents that sense and follow a shared chemical trail. This page runs that model on up to a million agents.</p>
+  <div class="help-cols">
+    <section>
+      <h3>Pointer</h3>
+      <dl>
+        <dt>Tap / click</dt><dd>Place a station</dd>
+        <dt>Drag a station</dt><dd>Reroute the network</dd>
+        <dt>Double-click / long-press</dt><dd>Remove a station</dd>
+        <dt>Right-drag / two fingers</dt><dd>Paint a lake (fades in ~8 s)</dd>
+        <dt>Shift-drag</dt><dd>Seed raw trail</dd>
+        <dt>Mobile mode</dt><dd>Station / Lake / Seed in the Tune sheet</dd>
+      </dl>
+    </section>
+    <section>
+      <h3>Keys</h3>
+      <dl class="keys">
+        <dt><kbd>1</kbd>&ndash;<kbd>5</kbd></dt><dd>Presets</dd>
+        <dt><kbd>Space</kbd></dt><dd>Pause / resume</dd>
+        <dt><kbd>R</kbd></dt><dd>Reseed (disc, ring, nodes, random)</dd>
+        <dt><kbd>C</kbd> / <kbd>N</kbd></dt><dd>Clear trails / clear stations</dd>
+        <dt><kbd>E</kbd></dt><dd>Evolve parameters</dd>
+        <dt><kbd>S</kbd></dt><dd>Species 1 &rarr; 2 &rarr; 3</dd>
+        <dt><kbd>V</kbd></dt><dd>Palette variant</dd>
+        <dt><kbd>B</kbd></dt><dd>Bloom on / off</dd>
+        <dt><kbd>P</kbd> / <kbd>U</kbd></dt><dd>Save poster / copy share link</dd>
+        <dt><kbd>M</kbd></dt><dd>Chime on / off</dd>
+        <dt><kbd>H</kbd></dt><dd>Hide / show UI</dd>
+        <dt><kbd>[</kbd> / <kbd>]</kbd></dt><dd>Agent density down / up</dd>
+        <dt><kbd>?</kbd> <kbd>/</kbd> &middot; <kbd>Esc</kbd></dt><dd>Help &middot; close</dd>
+        <dt><kbd>Tab</kbd></dt><dd>Focus stations on the map</dd>
+        <dt><kbd>&larr;</kbd><kbd>&uarr;</kbd><kbd>&rarr;</kbd><kbd>&darr;</kbd></dt><dd>Move focused station (Shift: 5%)</dd>
+        <dt><kbd>Del</kbd> &middot; <kbd>Enter</kbd></dt><dd>Remove focused &middot; add at centre</dd>
+      </dl>
+    </section>
+  </div>
+</dialog>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

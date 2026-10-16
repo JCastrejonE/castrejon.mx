@@ -1,0 +1,14 @@
+---
+// Wraps an essay's rendered Markdown. Tables go inside a scroll container, so a wide table scrolls by itself
+// and the page never scrolls sideways; the container and code blocks take focus, so the keyboard can scroll them.
+import { site } from '../data/site';
+
+const html = await Astro.slots.render('default');
+let n = 0;
+const out = html
+  .replace(/<table\b/g, () => `<div class="table-wrap" role="region" tabindex="0" aria-label="${site.research.labels.table} ${++n}"><table`)
+  .replace(/<\/table>/g, '</table></div>')
+  .replace(/<pre\b(?![^>]*\btabindex=)/g, '<pre tabindex="0"');
+---
+
+<div class="prose"><Fragment set:html={out} /></div>
