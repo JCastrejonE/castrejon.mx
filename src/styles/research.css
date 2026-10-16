@@ -1,6 +1,6 @@
 /* The /research pages: the index and the essays. Loaded only by those pages, after global.css,
    so the home page's inlined CSS doesn't grow. Same tokens, same type: Newsreader Display for h1 and h2,
-   the system font for everything else, a 42rem measure. */
+   the system font for everything else, the same measure as the home page (the width of the name). */
 
 .research {
   padding-block: 1.25rem 3rem;

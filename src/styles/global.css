@@ -52,7 +52,9 @@
   --subheadline: 0.9375rem; /* 15px */
   --footnote: 0.8125rem;    /* 13px */
 
-  --measure: 42rem;         /* 672px */
+  /* The column is as wide as the name set in one line: "Juan Carlos Castrejón Estrada" in
+     Newsreader Display 600 measures 13.8141em (663px at 48px). Re-measure if the name or font changes. */
+  --measure: calc(var(--large-title) * 13.8141);
   --gutter: 16px;
 }
 

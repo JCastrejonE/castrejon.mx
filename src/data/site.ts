@@ -125,6 +125,7 @@ export const site = {
     contactLinks: 'Contact links',
     facts: 'Summary',
     cv: 'CV',
+    research: 'Research',
     education: 'Education',
   },
 
