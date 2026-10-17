@@ -422,7 +422,20 @@
   text-align: center;
 }
 
-.prose tbody tr:last-child td {
+/* Row headers (see Prose.astro) look like ordinary cells; the empty corner cell keeps the header rule. */
+.prose tbody th {
+  font-weight: inherit;
+  vertical-align: top;
+  border-bottom-color: var(--separator);
+}
+
+.prose thead td {
+  vertical-align: bottom;
+  border-bottom-color: color-mix(in srgb, var(--label) 45%, transparent);
+}
+
+.prose tbody tr:last-child td,
+.prose tbody tr:last-child th {
   border-bottom: 0;
 }
 

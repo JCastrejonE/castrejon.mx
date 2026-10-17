@@ -1,11 +1,29 @@
 ---
+// One not-found page for both languages: the English line, then the Spanish one, each linking to its home.
 import Base from '../layouts/Base.astro';
-import { site } from '../data/site';
+import LangToggle from '../components/LangToggle.astro';
+import { getSite } from '../i18n';
+
+const en = getSite('en');
+const es = getSite('es');
 ---
 
-<Base title={`${site.notFound.title} · ${site.name}`} path="/404" noindex>
+<Base lang="en" title={`${en.notFound.title} · ${en.name}`} path="/404" noindex>
   <main class="not-found">
-    <h1>{site.notFound.title}</h1>
-    <p set:html={site.notFound.text} />
+    <LangToggle lang="en" href={es.paths.home} />
+    <h1>{en.notFound.title}</h1>
+    <p set:html={en.notFound.text} />
+    <p lang={es.lang} set:html={es.notFound.text} />
   </main>
 </Base>
+
+<style is:global>
+  .not-found {
+    min-height: 70vh;
+  }
+  .not-found p {
+    margin-top: 1.25rem;
+    font-size: var(--title-3);
+    line-height: 1.4;
+  }
+</style>

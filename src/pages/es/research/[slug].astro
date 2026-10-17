@@ -1,0 +1,14 @@
+---
+import EssayPage from '../../../components/EssayPage.astro';
+import { getEssays, type Essay } from '../../../lib/research';
+
+// Only the essays translated so far; the collection may be empty.
+export async function getStaticPaths() {
+  const essays = await getEssays('es');
+  return essays.map((essay) => ({ params: { slug: essay.id }, props: { essay } }));
+}
+
+const { essay } = Astro.props as { essay: Essay };
+---
+
+<EssayPage lang="es" essay={essay} />

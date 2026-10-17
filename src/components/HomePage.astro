@@ -1,0 +1,196 @@
+---
+// The one-page home, in either language: src/pages/index.astro renders it in English, src/pages/es/index.astro in Spanish.
+import Base from '../layouts/Base.astro';
+import Section from './Section.astro';
+import Email from './Email.astro';
+import EmailScript from './EmailScript.astro';
+import Arrow from './Arrow.astro';
+import LangToggle from './LangToggle.astro';
+import { getSite, other, type Lang } from '../i18n';
+import { fallbackLinks, translatedSlugs } from '../lib/research';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const site = getSite(lang);
+const { sections, labels, contact } = site;
+const otherHome = getSite(other(lang)).paths.home;
+// Spanish copy links to Spanish essays; one not translated yet falls back to the English essay.
+const available = await translatedSlugs();
+const links = (html: string) => (lang === 'es' ? fallbackLinks(html, available) : html);
+---
+
+<Base lang={lang} path={site.paths.home} alternate={otherHome}>
+  <main>
+    <LangToggle lang={lang} href={otherHome} />
+    <header class="intro">
+      <h1>{site.name}</h1>
+      <p class="lede">{site.intro.lede}</p>
+      {site.intro.paragraphs.map((p) => <p>{p}</p>)}
+      <ul class="actions" role="list" aria-label={labels.contactLinks}>
+        <li><Email lang={lang} variant="inline" class="button button-filled" /></li>
+        <li>
+          <a class="action-link" href={contact.github.href} rel="me">
+            {labels.github}<Arrow />
+          </a>
+        </li>
+        <li>
+          <a class="action-link" href={contact.linkedin.href} rel="me">
+            {labels.linkedin}<Arrow />
+          </a>
+        </li>
+        <li>
+          <a class="action-link" href={site.paths.research}>
+            {labels.research}<Arrow />
+          </a>
+        </li>
+        <li>
+          <a class="action-link" href={site.cv.href} download={site.cv.filename}>
+            {labels.cv}<Arrow dir="down" />
+          </a>
+        </li>
+      </ul>
+      <dl class="facts" aria-label={labels.facts}>
+        {
+          site.facts.map((f) => (
+            <div class="fact">
+              <dt>{f.label}</dt>
+              <dd>
+                <span class="fact-value">{f.value}</span>
+                <span class="fact-detail">
+                  {f.detail.split(' · ').map((part) => <span class="fact-part">{part}</span>)}
+                </span>
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </header>
+
+    <Section id="now" title={sections.now}>
+      <time slot="aside" class="capsule" datetime={site.now.datetime}>{site.now.date}</time>
+      <ul class="bullets" role="list">
+        {site.now.items.map((item) => <li set:html={links(item)} />)}
+      </ul>
+    </Section>
+
+    <Section id="work" title={sections.work}>
+      <a slot="aside" class="aside-link" href={site.allResearch.href}>{site.allResearch.label}</a>
+      <ul class="works" role="list">
+        {
+          site.work.map((w) => (
+            <li class="work">
+              <div class="work-head">
+                <h3 class="work-title">
+                  <a href={w.href}>
+                    {w.name}
+                    {w.href.startsWith('http') && <Arrow />}
+                  </a>
+                </h3>
+                <span class="meta">{w.kind}</span>
+              </div>
+              <p class="work-text" set:html={links(w.line)} />
+              {w.stats && (
+                <p class="stats">
+                  {w.stats.map((s) => (
+                    <span class="stat">
+                      <span class="stat-value">{s.value}</span> <span class="stat-caption">{s.caption}</span>
+                    </span>
+                  ))}
+                </p>
+              )}
+              <p class="tags">
+                <span class="visually-hidden">{labels.builtWith}</span>
+                {w.tags.join(' · ')}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </Section>
+
+    <Section id="experience" title={sections.experience}>
+      <span slot="aside" class="meta">{site.experienceSpan}</span>
+      <ol class="timeline" role="list">
+        {
+          site.experience.map((e, i) => (
+            <li class:list={['tl-item', { 'tl-current': i === 0 }]}>
+              <p class="tl-years">{e.years}</p>
+              <div class="tl-body">
+                <h3 class="tl-title">{e.company}</h3>
+                <p class="tl-role">{e.title}</p>
+                <p class="tl-note">{e.note}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+      <p class="edu-label">{labels.education}</p>
+      <div class="tl-item tl-edu">
+        <p class="tl-years">{site.education.years}</p>
+        <div class="tl-body">
+          <h3 class="tl-title">{site.education.school}</h3>
+          <p class="tl-role">{site.education.degree}</p>
+        </div>
+      </div>
+      <p class="ventures" set:html={links(site.ventures)} />
+      <p class="cv">
+        <a class="button button-tinted" href={site.cv.href} download={site.cv.filename}>
+          {site.cv.label}<Arrow dir="down" />
+        </a>
+      </p>
+    </Section>
+
+    <Section id="contact" title={sections.contact}>
+      <p>{contact.lead}</p>
+      <ul class="group" role="list">
+        <li><Email lang={lang} /></li>
+        <li>
+          <a class="cell cell-link" href={contact.github.href} rel="me">
+            <span class="cell-label">{labels.github}</span>
+            <span class="cell-value">{contact.github.label}<Arrow /></span>
+          </a>
+        </li>
+        <li>
+          <a class="cell cell-link" href={contact.linkedin.href} rel="me">
+            <span class="cell-label">{labels.linkedin}</span>
+            <span class="cell-value">{contact.linkedin.label}<Arrow /></span>
+          </a>
+        </li>
+        <li class="cell">
+          <span class="cell-label">{labels.location}</span>
+          <span class="cell-value">{contact.location}</span>
+        </li>
+        <li class="cell">
+          <span class="cell-label">{labels.timezone}</span>
+          <span class="cell-value">{contact.timezone}</span>
+        </li>
+        <li class="cell">
+          <span class="cell-label">{labels.languages}</span>
+          <span class="cell-value">{contact.languages}</span>
+        </li>
+      </ul>
+    </Section>
+  </main>
+
+  <footer class="footer footnote">{site.footer}</footer>
+  <EmailScript />
+</Base>
+
+<style is:global>
+  /* Beside the Selected work heading: a 44px target that keeps the heading row at its height. */
+  .aside-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-block: -8px;
+    font-size: var(--footnote);
+    font-weight: 500;
+  }
+  @media print {
+    .aside-link {
+      display: none;
+    }
+  }
+</style>

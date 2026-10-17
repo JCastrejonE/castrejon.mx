@@ -1,11 +1,16 @@
 ---
 import '../styles/global.css';
-import { site } from '../data/site';
+import ArrowDefs from '../components/ArrowDefs.astro';
+import { getSite, other, HREFLANG, type Lang } from '../i18n';
 
 interface Props {
+  lang?: Lang;
   title?: string;
   description?: string;
+  // This page's path in its own language, e.g. '/es/research/'.
   path?: string;
+  // The same page's path in the other language, when it exists. Adds the hreflang alternates and og:locale:alternate.
+  alternate?: string;
   noindex?: boolean;
   // 'profile' for the home page; 'article' for research essays, whose page adds its own article meta in the "head" slot.
   ogType?: 'profile' | 'website' | 'article';
@@ -13,33 +18,50 @@ interface Props {
   jsonld?: Record<string, unknown>;
 }
 
+const { lang = 'en' } = Astro.props;
+const site = getSite(lang);
 const {
   title = site.title,
   description = site.description,
-  path = '/',
+  path = site.paths.home,
+  alternate,
   noindex = false,
   ogType = 'profile',
   jsonld,
 } = Astro.props;
-const canonical = new URL(path, site.url).href;
-const ogImage = new URL('/og.png', site.url).href;
+const abs = (p: string) => new URL(p, site.url).href;
+const canonical = abs(path);
+const ogImage = abs(site.ogImage);
 const ogAlt = `${site.name}. ${site.ogLines.join(' ')}`;
+const otherSite = getSite(other(lang));
+// hreflang alternates for a page that exists in both languages; English is the default.
+const alternates = alternate
+  ? [
+      { hreflang: HREFLANG[lang], href: canonical },
+      { hreflang: HREFLANG[other(lang)], href: abs(alternate) },
+      { hreflang: 'x-default', href: abs(lang === 'en' ? path : alternate) },
+    ]
+  : [];
 
 const person = {
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: site.name,
-  jobTitle: site.person.jobTitle,
-  worksFor: { '@type': 'Organization', ...site.person.worksFor },
-  url: site.url,
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Zapopan',
-    addressRegion: 'Jalisco',
-    addressCountry: 'MX',
+  '@type': 'ProfilePage',
+  inLanguage: site.lang,
+  mainEntity: {
+    '@type': 'Person',
+    name: site.name,
+    jobTitle: site.person.jobTitle,
+    worksFor: { '@type': 'Organization', ...site.person.worksFor },
+    url: site.url,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Zapopan',
+      addressRegion: 'Jalisco',
+      addressCountry: 'MX',
+    },
+    alumniOf: { '@type': 'CollegeOrUniversity', name: 'Universidad Nacional Autónoma de México' },
+    sameAs: [site.contact.github.href, site.contact.linkedin.href],
   },
-  alumniOf: { '@type': 'CollegeOrUniversity', name: 'Universidad Nacional Autónoma de México' },
-  sameAs: [site.contact.github.href, site.contact.linkedin.href],
 };
 ---
 
@@ -52,6 +74,7 @@ const person = {
     <link rel="preload" href="/fonts/newsreader-display-600.woff2" as="font" type="font/woff2" crossorigin />
     <meta name="description" content={description} />
     {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    {!noindex && alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
@@ -73,13 +96,12 @@ const person = {
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={ogAlt} />
         <meta property="og:locale" content={site.locale} />
+        {alternate && <meta property="og:locale:alternate" content={otherSite.locale} />}
         {ogType === 'profile' && <meta property="profile:first_name" content="Juan Carlos" />}
         {ogType === 'profile' && <meta property="profile:last_name" content="Castrejón Estrada" />}
         <slot name="head" />
+        {/* X reads title, description and image from the og: tags above. */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={ogImage} />
         <meta name="twitter:image:alt" content={ogAlt} />
         <script type="application/ld+json" set:html={JSON.stringify(jsonld ?? person)} />
         </>
@@ -88,5 +110,6 @@ const person = {
   </head>
   <body>
     <slot />
+    <ArrowDefs />
   </body>
 </html>

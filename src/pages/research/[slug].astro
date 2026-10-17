@@ -1,109 +1,13 @@
 ---
-import Base from '../../layouts/Base.astro';
-import Arrow from '../../components/Arrow.astro';
-import Prose from '../../components/Prose.astro';
-import { render } from 'astro:content';
-import { site } from '../../data/site';
-import { getEssays, formatDate, type Essay } from '../../lib/research';
-import '../../styles/research.css';
+import EssayPage from '../../components/EssayPage.astro';
+import { getEssays, type Essay } from '../../lib/research';
 
 export async function getStaticPaths() {
-  const essays = await getEssays();
+  const essays = await getEssays('en');
   return essays.map((essay) => ({ params: { slug: essay.id }, props: { essay } }));
 }
 
 const { essay } = Astro.props as { essay: Essay };
-const { data } = essay;
-const { research } = site;
-const { Content, headings } = await render(essay);
-
-const path = `/research/${essay.id}/`;
-const url = new URL(path, site.url).href;
-// The contents list shows the essay's sections (h2), without the footnotes heading GFM adds.
-const toc = headings.filter((h) => h.depth === 2 && !/^footnote-label$/.test(h.slug));
-const group = research.groups.find((g) => g.key === data.group)!;
-const repoName = data.repo.replace(/^https?:\/\/(www\.)?github\.com\//, '').replace(/\/$/, '');
-const external = (href: string) => /^https?:\/\//.test(href);
-// Hyphenated words in the title ("bake-off") stay on one line, so a line never ends in a hyphen.
-const titleParts = data.title.split(/(\S+-\S+)/);
-
-const jsonld = {
-  '@context': 'https://schema.org',
-  '@type': 'ScholarlyArticle',
-  headline: data.title,
-  name: data.title,
-  description: data.description,
-  abstract: data.abstract,
-  url,
-  mainEntityOfPage: url,
-  datePublished: data.date,
-  inLanguage: site.lang,
-  author: { '@type': 'Person', name: site.name, url: site.url },
-  about: { '@type': 'SoftwareSourceCode', name: repoName, codeRepository: data.repo },
-  isPartOf: { '@type': 'CollectionPage', name: research.title, url: new URL('/research/', site.url).href },
-  genre: group.label,
-};
 ---
 
-<Base title={`${data.title} · ${site.name}`} description={data.description} path={path} ogType="article" jsonld={jsonld}>
-  <Fragment slot="head">
-    <meta property="article:published_time" content={data.date} />
-    <meta property="article:author" content={site.url} />
-    <meta property="article:section" content={research.title} />
-  </Fragment>
-
-  <main class="research essay">
-    <nav class="backbar" aria-label="Breadcrumb">
-      <a class="back" href="/research/"><Arrow dir="back" />{research.labels.back}</a>
-    </nav>
-
-    <article aria-labelledby="essay-title">
-      <header class="essay-head">
-        <h1 id="essay-title">{titleParts.map((t, i) => (i % 2 ? <span class="nowrap">{t}</span> : t))}</h1>
-        <p class="essay-meta">
-          <span>{data.context}</span>
-          <span class="essay-meta-date"><span aria-hidden="true"> · </span><time datetime={data.date}>{formatDate(data.date)}</time></span>
-        </p>
-        <ul class="essay-links" role="list" aria-label={research.labels.links}>
-          <li>
-            <a class="action-link" href={data.repo}>{research.labels.repository}<Arrow /></a>
-          </li>
-          {
-            data.links.map((l) => (
-              <li>
-                <a class="action-link" href={l.href}>
-                  {l.label}
-                  {external(l.href) && <Arrow />}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </header>
-
-      <section class="abstract" aria-labelledby="abstract-title">
-        <h2 id="abstract-title" class="abstract-title">{research.labels.abstract}</h2>
-        <p>{data.abstract}</p>
-      </section>
-
-      {
-        toc.length >= 3 && (
-          <nav class="toc" aria-labelledby="toc-title">
-            <h2 id="toc-title" class="toc-title">{research.labels.toc}</h2>
-            <ol role="list">
-              {toc.map((h) => (
-                <li>
-                  <a href={`#${h.slug}`}>{h.text}</a>
-                </li>
-              ))}
-            </ol>
-          </nav>
-        )
-      }
-
-      <Prose><Content /></Prose>
-    </article>
-  </main>
-
-  <footer class="footer footnote">{site.footer}</footer>
-</Base>
+<EssayPage lang="en" essay={essay} />

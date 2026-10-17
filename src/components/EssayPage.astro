@@ -1,0 +1,120 @@
+---
+// One research essay, in either language: src/pages/research/[slug].astro renders the English collection,
+// src/pages/es/research/[slug].astro the Spanish one ('researchEs'), with the same slugs.
+import Base from '../layouts/Base.astro';
+import Arrow from './Arrow.astro';
+import Prose from './Prose.astro';
+import LangToggle from './LangToggle.astro';
+import { render } from 'astro:content';
+import { getSite, other, type Lang } from '../i18n';
+import { getEssays, formatDate, fallbackHref, translatedSlugs, type Essay } from '../lib/research';
+import '../styles/research.css';
+
+interface Props {
+  lang: Lang;
+  essay: Essay;
+}
+const { lang, essay } = Astro.props;
+const site = getSite(lang);
+const { data } = essay;
+const { research } = site;
+const { Content, headings } = await render(essay);
+
+const path = `${site.paths.research}${essay.id}/`;
+// The same essay in the other language, if it has been translated; otherwise the toggle goes to that language's index.
+const otherSite = getSite(other(lang));
+const translated = (await getEssays(other(lang))).some((e) => e.id === essay.id);
+const alternate = translated ? `${otherSite.paths.research}${essay.id}/` : undefined;
+// A Spanish essay's link to an essay not translated yet points to the English one.
+const available = await translatedSlugs();
+const localHref = (href: string) => (lang === 'es' ? fallbackHref(href, available) : href);
+const url = new URL(path, site.url).href;
+// The contents list shows the essay's sections (h2), without the footnotes heading GFM adds.
+const toc = headings.filter((h) => h.depth === 2 && !/^footnote-label$/.test(h.slug));
+const group = research.groups.find((g) => g.key === data.group)!;
+const repoName = data.repo.replace(/^https?:\/\/(www\.)?github\.com\//, '').replace(/\/$/, '');
+const external = (href: string) => /^https?:\/\//.test(href);
+// Hyphenated words in the title ("bake-off") stay on one line, so a line never ends in a hyphen.
+const titleParts = data.title.split(/(\S+-\S+)/);
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'ScholarlyArticle',
+  headline: data.title,
+  name: data.title,
+  description: data.description,
+  abstract: data.abstract,
+  url,
+  mainEntityOfPage: url,
+  datePublished: data.date,
+  inLanguage: site.lang,
+  author: { '@type': 'Person', name: site.name, url: site.url },
+  about: { '@type': 'SoftwareSourceCode', name: repoName, codeRepository: data.repo },
+  isPartOf: { '@type': 'CollectionPage', name: research.title, url: new URL(site.paths.research, site.url).href },
+  genre: group.label,
+};
+---
+
+<Base lang={lang} title={`${data.title} · ${site.name}`} description={data.description} path={path} alternate={alternate} ogType="article" jsonld={jsonld}>
+  <Fragment slot="head">
+    <meta property="article:published_time" content={data.date} />
+    <meta property="article:author" content={site.url} />
+    <meta property="article:section" content={research.title} />
+  </Fragment>
+
+  <main class="research essay">
+    <nav class="backbar" aria-label="Breadcrumb">
+      <a class="back" href={site.paths.research}><Arrow dir="back" />{research.labels.back}</a>
+    </nav>
+    <LangToggle lang={lang} href={alternate ?? otherSite.paths.research} />
+
+    <article aria-labelledby="essay-title">
+      <header class="essay-head">
+        <h1 id="essay-title">{titleParts.map((t, i) => (i % 2 ? <span class="nowrap">{t}</span> : t))}</h1>
+        <p class="essay-meta">
+          <span>{data.context}</span>
+          <span class="essay-meta-date"><span aria-hidden="true"> · </span><time datetime={data.date}>{formatDate(data.date, lang)}</time></span>
+        </p>
+        <ul class="essay-links" role="list" aria-label={research.labels.links}>
+          <li>
+            <a class="action-link" href={data.repo}>{research.labels.repository}<Arrow /></a>
+          </li>
+          {
+            data.links.map((l) => (
+              <li>
+                <a class="action-link" href={localHref(l.href)}>
+                  {l.label}
+                  {external(l.href) && <Arrow />}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </header>
+
+      <section class="abstract" aria-labelledby="abstract-title">
+        <h2 id="abstract-title" class="abstract-title">{research.labels.abstract}</h2>
+        <p>{data.abstract}</p>
+      </section>
+
+      {
+        toc.length >= 3 && (
+          <nav class="toc" aria-labelledby="toc-title">
+            <h2 id="toc-title" class="toc-title">{research.labels.toc}</h2>
+            <ol role="list">
+              {toc.map((h) => (
+                <li>
+                  <a href={`#${h.slug}`}>{h.text}</a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )
+      }
+
+      <Prose lang={lang}><Content /></Prose>
+    </article>
+  </main>
+
+  <footer class="footer footnote">{site.footer}</footer>
+</Base>

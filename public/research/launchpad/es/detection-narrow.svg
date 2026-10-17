@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="lpdn" width="343" height="454" viewBox="0 0 343 454" role="img" aria-labelledby="lpdn-t lpdn-d" lang="es">
+<title id="lpdn-t">Qué detectó cada uno de los 225 defectos de Launchpad</title>
+<desc id="lpdn-d">Gráfica de barras horizontales de los 225 defectos del registro de Launchpad, según lo que detectó cada uno: Ejecutar el sistema real y leer su estado, 119 (53%); El autor nota que su propio instrumento está mal, 43 (19%); Una persona que lee código o documentación, 31 (14%); Toparse con él al usar el producto, 16 (7%); El gate: build, typecheck o lint, 7 (3%); Romper el código y ver una prueba en rojo, 4 (2%); Un agente revisor, 2 (1%); Una caída de la producción del propio Launchpad, 2 (1%); Revisión de specs, 1 (&lt;1%); Una prueba unitaria en rojo, 0 (0%). Los porcentajes son los que imprime el registro. Fuente: docs/PROOF-OF-WORK.md, sección 1.</desc>
+<style>
+.lpdn text{font-family:-apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;}
+.lpdn .ink{fill:#000}
+.lpdn .sec{fill:#6e6e73}
+.lpdn .hair{stroke:rgba(60,60,67,.29);stroke-width:1;fill:none}
+.lpdn .acc{fill:#3730a3}
+.lpdn .gry{fill:#8e8e93}
+.lpdn .gry2{fill:#c7c7cc}
+.lpdn .on-acc{fill:#fff}
+.lpdn .on-gry{fill:#000}
+.lpdn .on-gry2{fill:#000}
+.lpdn .b{font-weight:600}
+.lpdn .num{font-variant-numeric:tabular-nums}
+
+</style>
+<path class="hair" d="M11.5 27V446"/><text class="ink b" x="12" y="22" font-size="13">Ejecutar el sistema real y leer su estado</text><path class="acc" d="M12 29H251A4 4 0 0 1 255 33V37A4 4 0 0 1 251 41H12Z"/><text class="ink num b" x="261" y="39.5" font-size="13">119 (53%)</text><text class="ink" x="12" y="66" font-size="13">El autor nota que su propio instrumento está mal</text><path class="gry" d="M12 73H95.8A4 4 0 0 1 99.8 77V81A4 4 0 0 1 95.8 85H12Z"/><text class="ink num" x="105.8" y="83.5" font-size="13">43 (19%)</text><text class="ink" x="12" y="110" font-size="13">Una persona que lee código o documentación</text><path class="gry" d="M12 117H71.3A4 4 0 0 1 75.3 121V125A4 4 0 0 1 71.3 129H12Z"/><text class="ink num" x="81.3" y="127.5" font-size="13">31 (14%)</text><text class="ink" x="12" y="154" font-size="13">Toparse con él al usar el producto</text><path class="gry" d="M12 161H40.7A4 4 0 0 1 44.7 165V169A4 4 0 0 1 40.7 173H12Z"/><text class="ink num" x="50.7" y="171.5" font-size="13">16 (7%)</text><text class="ink" x="12" y="198" font-size="13">El gate: build, typecheck o lint</text><path class="gry" d="M12 205H22.3A4 4 0 0 1 26.3 209V213A4 4 0 0 1 22.3 217H12Z"/><text class="ink num" x="32.3" y="215.5" font-size="13">7 (3%)</text><text class="ink" x="12" y="242" font-size="13">Romper el código y ver una prueba en rojo</text><path class="gry" d="M12 249H16.2A4 4 0 0 1 20.2 253V257A4 4 0 0 1 16.2 261H12Z"/><text class="ink num" x="26.2" y="259.5" font-size="13">4 (2%)</text><text class="ink" x="12" y="286" font-size="13">Un agente revisor</text><path class="gry" d="M12 293H12.1A4 4 0 0 1 16.1 297V301A4 4 0 0 1 12.1 305H12Z"/><text class="ink num" x="22.1" y="303.5" font-size="13">2 (1%)</text><text class="ink" x="12" y="330" font-size="13">Una caída de la producción del propio Launchpad</text><path class="gry" d="M12 337H12.1A4 4 0 0 1 16.1 341V345A4 4 0 0 1 12.1 349H12Z"/><text class="ink num" x="22.1" y="347.5" font-size="13">2 (1%)</text><text class="ink" x="12" y="374" font-size="13">Revisión de specs</text><path class="gry" d="M12 381H12A2.042016806722689 2.042016806722689 0 0 1 14 383V391A2.042016806722689 2.042016806722689 0 0 1 12 393H12Z"/><text class="ink num" x="20" y="391.5" font-size="13">1 (&lt;1%)</text><text class="ink b" x="12" y="418" font-size="13">Una prueba unitaria en rojo</text><text class="ink num b" x="18" y="435.5" font-size="13">0 (0%)</text>
+</svg>

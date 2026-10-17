@@ -1,10 +1,13 @@
-// All copy on the site lives here, including UI labels. Every fact must come from cv.md.
-// To add a Spanish version later, copy this object to site.es.ts and translate the strings.
+// All English copy on the site lives here, including UI labels. Every fact must come from cv.md.
+// The Spanish edition is site.es.ts, with exactly the same keys (src/i18n.ts checks it at build time).
 
 export const site = {
   lang: 'en',
   locale: 'en_US',
   url: 'https://castrejon.mx/',
+  // This language's home, research index and Open Graph image.
+  paths: { home: '/', research: '/research/' },
+  ogImage: '/og.png',
   name: 'Juan Carlos Castrejón Estrada',
   title: 'Juan Carlos Castrejón Estrada, software engineer',
   description:
@@ -127,6 +130,8 @@ export const site = {
     cv: 'CV',
     research: 'Research',
     education: 'Education',
+    // The language toggle's landmark name.
+    language: 'Language',
   },
 
   // The /research section: its index page and the labels the essay pages use.

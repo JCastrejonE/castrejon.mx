@@ -249,6 +249,51 @@ main {
   }
 }
 
+/* Language toggle (LangToggle.astro): top right of the column, on the back button's row on research pages.
+   Each item is a 44px target; its padding (in px, so it stays inside the gutter at any text size) is pulled
+   into the gutter so the last label ends at the column's edge. */
+
+main {
+  position: relative;
+}
+
+.lang-toggle {
+  position: absolute;
+  top: 1.25rem;
+  right: calc(max(var(--gutter), env(safe-area-inset-right)) - 14px);
+  display: flex;
+  align-items: center;
+  font-size: var(--footnote);
+  font-weight: 500;
+  color: var(--secondary-label);
+}
+
+.lang-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding-inline: 14px;
+}
+
+span.lang-item {
+  color: var(--label);
+  font-weight: 600;
+}
+
+/* The ring sits inside the target, clear of the "/" between the two. */
+.lang-item:focus-visible {
+  outline-offset: -2px;
+  border-radius: 10px;
+}
+
+@media (min-width: 40em) {
+  .lang-toggle {
+    top: 2rem;
+  }
+}
+
 /* Intro */
 
 h1 {
@@ -533,6 +578,11 @@ section > p + .group {
   font-size: var(--body);
   font-weight: 600;
   line-height: 1.3;
+}
+
+/* A long label (Spanish runs longer) wraps once it has a line of its own, instead of running off the screen. */
+.work-head .meta {
+  white-space: normal;
 }
 
 /* The name is the row's link; its overlay makes the whole row clickable, and it keeps a 44px-tall box. */
@@ -840,18 +890,6 @@ section > p + .group {
   margin-bottom: 1rem;
 }
 
-/* 404 */
-
-.not-found {
-  min-height: 70vh;
-}
-
-.not-found p {
-  margin-top: 1.25rem;
-  font-size: var(--title-3);
-  line-height: 1.4;
-}
-
 /* Motion: only small hover shifts, and none when the reader asks for less */
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
@@ -1055,6 +1093,7 @@ section > p + .group {
   }
 
   .arrow,
+  .lang-toggle,
   .edu-label,
   .tags,
   .cv,

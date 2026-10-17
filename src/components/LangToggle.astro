@@ -1,0 +1,33 @@
+---
+// "EN / ES" at the top right of the column: the current language as plain text, the other as a link to the same page
+// in that language (or to its home or research index when the page has no translation). Plain HTML, no JavaScript.
+// The link's name starts with its visible text ("ES, Español"), so voice control can target it by what it shows.
+import { getSite, LANGS, ENDONYM, HREFLANG, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  // The equivalent page in the other language.
+  href: string;
+}
+const { lang, href } = Astro.props;
+---
+
+<nav class="lang-toggle" aria-label={getSite(lang).labels.language}>
+  {
+    LANGS.map((l, i) => (
+      <>
+        {i > 0 && <span aria-hidden="true">/</span>}
+        {l === lang ? (
+          <span class="lang-item" aria-current="page">
+            <span aria-hidden="true">{l.toUpperCase()}</span>
+            <span class="visually-hidden">{ENDONYM[l]}</span>
+          </span>
+        ) : (
+          <a class="lang-item" href={href} lang={HREFLANG[l]} hreflang={HREFLANG[l]} aria-label={`${l.toUpperCase()}, ${ENDONYM[l]}`}>
+            {l.toUpperCase()}
+          </a>
+        )}
+      </>
+    ))
+  }
+</nav>

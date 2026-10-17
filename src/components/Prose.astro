@@ -1,11 +1,27 @@
 ---
 // Wraps an essay's rendered Markdown. Tables go inside a scroll container, so a wide table scrolls by itself
 // and the page never scrolls sideways; the container and code blocks take focus, so the keyboard can scroll them.
-import { site } from '../data/site';
+// In Spanish essays, a link to an essay not translated yet points to the English one.
+import { getSite, type Lang } from '../i18n';
+import { fallbackLinks, translatedSlugs } from '../lib/research';
 
-const html = await Astro.slots.render('default');
+interface Props {
+  lang: Lang;
+}
+const site = getSite(Astro.props.lang);
+const rendered = await Astro.slots.render('default');
+const html = Astro.props.lang === 'es' ? fallbackLinks(rendered, await translatedSlugs()) : rendered;
 let n = 0;
+// A table whose top-left header cell is empty labels its rows in the first column: those cells become row headers,
+// so every data cell has a header for screen readers. research.css keeps them looking like ordinary cells.
+const rowHeaders = (table: string) =>
+  /<thead>\s*<tr>\s*<th><\/th>/.test(table)
+    ? table
+        .replace(/(<thead>\s*<tr>\s*)<th><\/th>/, '$1<td></td>')
+        .replace(/<tbody>[\s\S]*<\/tbody>/, (body) => body.replace(/<tr>(\s*)<td([^>]*)>([\s\S]*?)<\/td>/g, '<tr>$1<th scope="row"$2>$3</th>'))
+    : table;
 const out = html
+  .replace(/<table>[\s\S]*?<\/table>/g, rowHeaders)
   .replace(/<table\b/g, () => `<div class="table-wrap" role="region" tabindex="0" aria-label="${site.research.labels.table} ${++n}"><table`)
   .replace(/<\/table>/g, '</table></div>')
   .replace(/<pre\b(?![^>]*\btabindex=)/g, '<pre tabindex="0"');

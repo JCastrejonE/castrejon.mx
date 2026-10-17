@@ -1,14 +1,14 @@
+---
+// Reassembles the address that Email.astro writes reversed and split, and makes each [data-email] a mailto link.
+// In the contact cell, a <wbr> lets a long address break before the @ instead of mid-word.
+// Kept compact by hand: is:inline scripts ship as written, and this one counts toward the home page's 50 KB budget.
+---
+
 <script is:inline>
-  document.querySelectorAll('[data-email]').forEach(function (a) {
-    var r = function (s) { return s.split('').reverse().join(''); };
-    var address = r(a.dataset.u) + '@' + r(a.dataset.d);
-    a.href = 'mailto:' + address;
-    var text = a.querySelector('[data-email-text]');
-    if (text) {
-      // A <wbr> lets a long address break before the @ instead of mid-word.
-      text.textContent = r(a.dataset.u);
-      text.appendChild(document.createElement('wbr'));
-      text.appendChild(document.createTextNode('@' + r(a.dataset.d)));
-    }
-  });
+document.querySelectorAll('[data-email]').forEach(function (a) {
+var r = function (s) { return s.split('').reverse().join(''); };
+var u = r(a.dataset.u), d = r(a.dataset.d), t = a.querySelector('[data-email-text]');
+a.href = 'mailto:' + u + '@' + d;
+if (t) { t.textContent = u; t.appendChild(document.createElement('wbr')); t.appendChild(document.createTextNode('@' + d)); }
+});
 </script>

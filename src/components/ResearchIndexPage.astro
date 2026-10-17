@@ -1,0 +1,102 @@
+---
+// The research index, in either language: src/pages/research/index.astro (English) and src/pages/es/research/index.astro.
+// The Spanish index lists every essay in the English order; one not translated yet appears in English, marked lang="en".
+import Base from '../layouts/Base.astro';
+import Section from './Section.astro';
+import Arrow from './Arrow.astro';
+import LangToggle from './LangToggle.astro';
+import { getSite, other, type Lang } from '../i18n';
+import { getEssays, formatDate, type Essay } from '../lib/research';
+import '../styles/research.css';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const site = getSite(lang);
+const { research } = site;
+const otherIndex = getSite(other(lang)).paths.research;
+
+const own = await getEssays(lang);
+const english = await getEssays('en');
+const bySlug = new Map(own.map((e) => [e.id, e]));
+const entries: { essay: Essay; lang: Lang }[] =
+  lang === 'en'
+    ? own.map((essay) => ({ essay, lang }))
+    : [
+        ...english.map((e) => (bySlug.has(e.id) ? { essay: bySlug.get(e.id)!, lang } : { essay: e, lang: 'en' as Lang })),
+        ...own.filter((e) => !english.some((x) => x.id === e.id)).map((essay) => ({ essay, lang })),
+      ];
+const href = (e: { essay: Essay; lang: Lang }) => `${getSite(e.lang).paths.research}${e.essay.id}/`;
+const groups = research.groups
+  .map((g) => ({ ...g, entries: entries.filter((e) => e.essay.data.group === g.key) }))
+  .filter((g) => g.entries.length > 0);
+
+const url = new URL(site.paths.research, site.url).href;
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: research.title,
+  description: research.description,
+  url,
+  inLanguage: site.lang,
+  author: { '@type': 'Person', name: site.name, url: site.url },
+  hasPart: own.map((e) => ({
+    '@type': 'ScholarlyArticle',
+    headline: e.data.title,
+    url: new URL(`${site.paths.research}${e.id}/`, site.url).href,
+  })),
+};
+---
+
+<Base
+  lang={lang}
+  title={`${research.title} · ${site.name}`}
+  description={research.description}
+  path={site.paths.research}
+  alternate={otherIndex}
+  ogType="website"
+  jsonld={jsonld}
+>
+  <main class="research">
+    <nav class="backbar" aria-label="Breadcrumb">
+      <a class="back" href={site.paths.home}><Arrow dir="back" />{research.labels.home}</a>
+    </nav>
+    <LangToggle lang={lang} href={otherIndex} />
+    <header class="research-head">
+      <h1>{research.title}</h1>
+      {research.intro.map((p) => <p class="research-intro">{p}</p>)}
+    </header>
+
+    {
+      groups.map((g) => (
+        <Section id={g.id} title={g.label}>
+          <ul class="works entries" role="list">
+            {g.entries.map((entry) => {
+              const e = entry.essay;
+              const fallback = entry.lang !== lang;
+              return (
+                <li class="work entry" lang={fallback ? getSite(entry.lang).lang : undefined}>
+                  <div class="work-head">
+                    <h3 class="work-title">
+                      <a href={href(entry)} hreflang={fallback ? entry.lang : undefined}>
+                        {e.data.title}
+                      </a>
+                    </h3>
+                    <time class="meta" datetime={e.data.date}>
+                      {formatDate(e.data.date, entry.lang)}
+                    </time>
+                  </div>
+                  <p class="entry-context">{e.data.context}</p>
+                  <p class="work-text">{e.data.summary}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </Section>
+      ))
+    }
+  </main>
+
+  <footer class="footer footnote">{site.footer}</footer>
+</Base>

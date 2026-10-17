@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 386" width="440" height="386" role="img" aria-labelledby="t d">
+<title id="t">La instancia de 15 vértices del reporte con su mejor cobertura</title>
+<desc id="d">Gráfica de inputs/prueba.txt: 15 vértices, 24 aristas, todos los pesos iguales a 1. Un camino recorre los vértices del 2 al 14; los vértices 0 y 1 están unidos cada uno a los vértices 3, 5, 7, 9, 11 y 13. La mejor cobertura que encontró la colonia de hormigas, que también es el óptimo exacto, son los vértices 3, 5, 7, 9, 11 y 13, dibujados como círculos rellenos; los otros 9 vértices están huecos. La heurística greedy elige primero los vértices 0 y 1 y termina con 8 vértices: 0, 1, 3, 5, 7, 9, 11, 13.</desc>
+<style>
+text{font-family:-apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;font-size:14px}
+.ink{fill:#000}
+.sec{fill:#6e6e73}
+.b{font-weight:600}
+.hair{stroke:rgba(60,60,67,.29);stroke-width:1;fill:none}
+.edge{stroke:#6e6e73;stroke-width:1.25;fill:none}
+.acc{fill:#3730a3}
+.accS{stroke:#3730a3;fill:none}
+.gry{fill:#6e6e73}
+.gryS{stroke:#6e6e73;fill:none}
+.onacc{fill:#fff}
+</style>
+<circle class="acc" cx="21" cy="17" r="7"/>
+<text class="ink" x="36" y="21">En la mejor cobertura: 6 vértices, el óptimo exacto</text>
+<circle class="gryS" cx="21" cy="41" r="6" stroke-width="2"/>
+<text class="ink" x="36" y="45">Fuera de la cobertura: 9 vértices</text>
+<line class="edge" x1="209.5" y1="83.7" x2="67.1" y2="188.3"/>
+<line class="edge" x1="211.8" y1="86.1" x2="130.2" y2="185.9"/>
+<line class="edge" x1="216.6" y1="88.5" x2="190.7" y2="183.5"/>
+<line class="edge" x1="223.4" y1="88.5" x2="249.3" y2="183.5"/>
+<line class="edge" x1="228.2" y1="86.1" x2="309.8" y2="185.9"/>
+<line class="edge" x1="230.5" y1="83.7" x2="372.9" y2="188.3"/>
+<line class="edge" x1="209.5" y1="308.3" x2="67.1" y2="203.7"/>
+<line class="edge" x1="211.8" y1="305.9" x2="130.2" y2="206.1"/>
+<line class="edge" x1="216.6" y1="303.5" x2="190.7" y2="208.5"/>
+<line class="edge" x1="223.4" y1="303.5" x2="249.3" y2="208.5"/>
+<line class="edge" x1="228.2" y1="305.9" x2="309.8" y2="206.1"/>
+<line class="edge" x1="230.5" y1="308.3" x2="372.9" y2="203.7"/>
+<line class="edge" x1="37" y1="196" x2="43.7" y2="196"/>
+<line class="edge" x1="69.7" y1="196" x2="76.3" y2="196"/>
+<line class="edge" x1="102.3" y1="196" x2="109" y2="196"/>
+<line class="edge" x1="135" y1="196" x2="141.7" y2="196"/>
+<line class="edge" x1="167.7" y1="196" x2="174.3" y2="196"/>
+<line class="edge" x1="200.3" y1="196" x2="207" y2="196"/>
+<line class="edge" x1="233" y1="196" x2="239.7" y2="196"/>
+<line class="edge" x1="265.7" y1="196" x2="272.3" y2="196"/>
+<line class="edge" x1="298.3" y1="196" x2="305" y2="196"/>
+<line class="edge" x1="331" y1="196" x2="337.7" y2="196"/>
+<line class="edge" x1="363.7" y1="196" x2="370.3" y2="196"/>
+<line class="edge" x1="396.3" y1="196" x2="403" y2="196"/>
+<g><title>Vértice 0, 6 aristas, fuera de la cobertura</title><circle class="gryS" cx="220" cy="76" r="11" stroke-width="2"/><text class="ink b" x="220" y="80.5" text-anchor="middle" font-size="12">0</text></g>
+<g><title>Vértice 1, 6 aristas, fuera de la cobertura</title><circle class="gryS" cx="220" cy="316" r="11" stroke-width="2"/><text class="ink b" x="220" y="320.5" text-anchor="middle" font-size="12">1</text></g>
+<g><title>Vértice 2, 1 arista, fuera de la cobertura</title><circle class="gryS" cx="24" cy="196" r="11" stroke-width="2"/><text class="ink b" x="24" y="200.5" text-anchor="middle" font-size="12">2</text></g>
+<g><title>Vértice 3, 4 aristas, en la mejor cobertura</title><circle class="acc" cx="56.7" cy="196" r="12"/><text class="onacc b" x="56.7" y="200.5" text-anchor="middle" font-size="12">3</text></g>
+<g><title>Vértice 4, 2 aristas, fuera de la cobertura</title><circle class="gryS" cx="89.3" cy="196" r="11" stroke-width="2"/><text class="ink b" x="89.3" y="200.5" text-anchor="middle" font-size="12">4</text></g>
+<g><title>Vértice 5, 4 aristas, en la mejor cobertura</title><circle class="acc" cx="122" cy="196" r="12"/><text class="onacc b" x="122" y="200.5" text-anchor="middle" font-size="12">5</text></g>
+<g><title>Vértice 6, 2 aristas, fuera de la cobertura</title><circle class="gryS" cx="154.7" cy="196" r="11" stroke-width="2"/><text class="ink b" x="154.7" y="200.5" text-anchor="middle" font-size="12">6</text></g>
+<g><title>Vértice 7, 4 aristas, en la mejor cobertura</title><circle class="acc" cx="187.3" cy="196" r="12"/><text class="onacc b" x="187.3" y="200.5" text-anchor="middle" font-size="12">7</text></g>
+<g><title>Vértice 8, 2 aristas, fuera de la cobertura</title><circle class="gryS" cx="220" cy="196" r="11" stroke-width="2"/><text class="ink b" x="220" y="200.5" text-anchor="middle" font-size="12">8</text></g>
+<g><title>Vértice 9, 4 aristas, en la mejor cobertura</title><circle class="acc" cx="252.7" cy="196" r="12"/><text class="onacc b" x="252.7" y="200.5" text-anchor="middle" font-size="12">9</text></g>
+<g><title>Vértice 10, 2 aristas, fuera de la cobertura</title><circle class="gryS" cx="285.3" cy="196" r="11" stroke-width="2"/><text class="ink b" x="285.3" y="200.5" text-anchor="middle" font-size="12">10</text></g>
+<g><title>Vértice 11, 4 aristas, en la mejor cobertura</title><circle class="acc" cx="318" cy="196" r="12"/><text class="onacc b" x="318" y="200.5" text-anchor="middle" font-size="12">11</text></g>
+<g><title>Vértice 12, 2 aristas, fuera de la cobertura</title><circle class="gryS" cx="350.7" cy="196" r="11" stroke-width="2"/><text class="ink b" x="350.7" y="200.5" text-anchor="middle" font-size="12">12</text></g>
+<g><title>Vértice 13, 4 aristas, en la mejor cobertura</title><circle class="acc" cx="383.3" cy="196" r="12"/><text class="onacc b" x="383.3" y="200.5" text-anchor="middle" font-size="12">13</text></g>
+<g><title>Vértice 14, 1 arista, fuera de la cobertura</title><circle class="gryS" cx="416" cy="196" r="11" stroke-width="2"/><text class="ink b" x="416" y="200.5" text-anchor="middle" font-size="12">14</text></g>
+<text class="sec" x="16" y="356">Greedy elige primero los vértices 0 y 1 (6 aristas cada uno)</text>
+<text class="sec" x="16" y="375">y termina con 8 vértices: 0, 1, 3, 5, 7, 9, 11, 13.</text>
+</svg>

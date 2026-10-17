@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="cg4" width="440" height="370" viewBox="0 0 440 370" role="img" aria-labelledby="cg4-t cg4-d">
+<title id="cg4-t">Las cuatro reglas de actualización del autómata</title>
+<desc id="cg4-d">Las cuatro reglas de actualización del autómata; cada una se muestra como una celda y sus dos vecinos en el paso t, y la celda central en el paso t + 1. Regla A, herencia: una celda llena X sigue siendo X. Regla B, evolución de adelante hacia atrás: una celda vacía con el vecino izquierdo lleno X y el vecino derecho vacío toma un estado extraído de la fila X de F2B. Regla C, evolución de atrás hacia adelante: una celda vacía con el vecino izquierdo vacío y el vecino derecho lleno X toma un estado extraído de la fila X de B2F. Regla D, retorno a la inanimación: una celda vacía con sus dos vecinos vacíos se queda vacía.</desc>
+<style>
+.cg4 text{font-family:-apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;font-size:13px}
+.cg4 .ink{fill:#000}
+.cg4 .sec{fill:#6e6e73}
+.cg4 .hair{stroke:rgba(60,60,67,.29);fill:none}
+.cg4 .emp{fill:none;stroke:rgba(60,60,67,.29)}
+.cg4 .old{fill:#d1d1d6}
+.cg4 .oldt{fill:#000}
+.cg4 .new{fill:#3730a3}
+.cg4 .newt{fill:#fff}
+.cg4 .acc{fill:#3730a3}
+.cg4 .lt{font-weight:600;text-anchor:middle}
+.cg4 .b{font-weight:600}
+.cg4 .ar{stroke:#6e6e73;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+</style>
+<text class="sec" x="61.0" y="16" text-anchor="middle">Paso t</text>
+<text class="sec" x="163" y="16" text-anchor="middle">Paso t + 1</text>
+<text class="ink b" x="20" y="44">Regla A, herencia</text>
+<rect class="emp" x="20.5" y="54.5" width="25" height="25" rx="3"/>
+<text class="sec" x="33" y="73" text-anchor="middle" style="font-size:15px">∗</text>
+<rect class="old" x="48" y="54" width="26" height="26" rx="3"/><text class="oldt lt" x="61" y="71.5">X</text>
+<rect class="emp" x="76.5" y="54.5" width="25" height="25" rx="3"/>
+<text class="sec" x="89" y="73" text-anchor="middle" style="font-size:15px">∗</text>
+<path class="ar" d="M112 67H140M135 63L140 67L135 71"/>
+<rect class="old" x="150" y="54" width="26" height="26" rx="3"/><text class="oldt lt" x="163" y="71.5">X</text>
+<text class="sec" x="190" y="71.5">Una celda llena conserva su estado</text>
+<text class="ink b" x="20" y="120">Regla B, evolución de adelante hacia atrás</text>
+<rect class="old" x="20" y="130" width="26" height="26" rx="3"/><text class="oldt lt" x="33" y="147.5">X</text>
+<rect class="emp" x="48.5" y="130.5" width="25" height="25" rx="3"/>
+<text class="sec lt" x="61" y="147.5">∅</text>
+<rect class="emp" x="76.5" y="130.5" width="25" height="25" rx="3"/>
+<text class="sec lt" x="89" y="147.5">∅</text>
+<path class="ar" d="M112 143H140M135 139L140 143L135 147"/>
+<rect class="new" x="150" y="130" width="26" height="26" rx="3"/><text class="newt lt" x="163" y="147.5">?</text>
+<text class="sec" x="190" y="147.5">Se extrae de la fila X de F2B</text>
+<text class="ink b" x="20" y="196">Regla C, evolución de atrás hacia adelante</text>
+<rect class="emp" x="20.5" y="206.5" width="25" height="25" rx="3"/>
+<text class="sec lt" x="33" y="223.5">∅</text>
+<rect class="emp" x="48.5" y="206.5" width="25" height="25" rx="3"/>
+<text class="sec lt" x="61" y="223.5">∅</text>
+<rect class="old" x="76" y="206" width="26" height="26" rx="3"/><text class="oldt lt" x="89" y="223.5">X</text>
+<path class="ar" d="M112 219H140M135 215L140 219L135 223"/>
+<rect class="new" x="150" y="206" width="26" height="26" rx="3"/><text class="newt lt" x="163" y="223.5">?</text>
+<text class="sec" x="190" y="223.5">Se extrae de la fila X de B2F</text>
+<text class="ink b" x="20" y="272">Regla D, retorno a la inanimación</text>
+<rect class="emp" x="20.5" y="282.5" width="25" height="25" rx="3"/>
+<text class="sec lt" x="33" y="299.5">∅</text>
+<rect class="emp" x="48.5" y="282.5" width="25" height="25" rx="3"/>
+<text class="sec lt" x="61" y="299.5">∅</text>
+<rect class="emp" x="76.5" y="282.5" width="25" height="25" rx="3"/>
+<text class="sec lt" x="89" y="299.5">∅</text>
+<path class="ar" d="M112 295H140M135 291L140 295L135 299"/>
+<rect class="emp" x="150.5" y="282.5" width="25" height="25" rx="3"/>
+<text class="sec lt" x="163" y="299.5">∅</text>
+<text class="sec" x="190" y="299.5">La celda se queda vacía</text>
+<text class="sec" x="20" y="331">X es cualquier estado lleno, y ∗ es cualquier estado.</text>
+<text class="sec" x="20" y="348">Cada regla muestra una celda y sus dos vecinos en el paso t,</text>
+<text class="sec" x="20" y="365">y la misma celda en el paso t + 1.</text>
+</svg>

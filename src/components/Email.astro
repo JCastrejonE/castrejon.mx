@@ -2,13 +2,15 @@
 // The address is written to the HTML reversed and split; the script reassembles it into a mailto link.
 // Without JavaScript the contact cell has no href, so it reads as plain text instead of a dead link;
 // the header link falls back to the contact section. The script lives in EmailScript.astro, included once per page.
-import { site } from '../data/site';
+import { getSite, type Lang } from '../i18n';
 
 interface Props {
+  lang: Lang;
   variant?: 'cell' | 'inline';
   class?: string;
 }
-const { variant = 'cell', class: className = 'contact-link' } = Astro.props;
+const { lang, variant = 'cell', class: className = 'contact-link' } = Astro.props;
+const site = getSite(lang);
 const reverse = (s: string) => [...s].reverse().join('');
 const [user, domain] = site.contact.email.split('@').map(reverse);
 ---
