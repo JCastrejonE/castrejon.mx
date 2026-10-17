@@ -9,6 +9,8 @@ context: 'Experiment · Odoo Launchpad case study'
 group: agents
 order: 2
 repo: https://github.com/JCastrejonE/launchpad
+ogImage: /research/setup-bake-off/og-figure-1.jpg
+ogImageAlt: 'The six pages the setups shipped, in the order A, B, C, D, E2, F: a flow field and five Physarum slime-mold simulations.'
 links:
   - label: 'Related: the Launchpad defect record and the development model drawn from it'
     href: /research/launchpad/

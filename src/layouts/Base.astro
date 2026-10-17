@@ -16,6 +16,9 @@ interface Props {
   ogType?: 'profile' | 'website' | 'article';
   // Structured data for this page; the home page uses the Person below.
   jsonld?: Record<string, unknown>;
+  // A page-specific link-preview image (1200x630) and its alt text; defaults to the site's OG image.
+  ogImage?: string;
+  ogImageAlt?: string;
 }
 
 const { lang = 'en' } = Astro.props;
@@ -28,11 +31,13 @@ const {
   noindex = false,
   ogType = 'profile',
   jsonld,
+  ogImage: ogImageOverride,
+  ogImageAlt,
 } = Astro.props;
 const abs = (p: string) => new URL(p, site.url).href;
 const canonical = abs(path);
-const ogImage = abs(site.ogImage);
-const ogAlt = `${site.name}. ${site.ogLines.join(' ')}`;
+const ogImage = abs(ogImageOverride ?? site.ogImage);
+const ogAlt = ogImageAlt ?? `${site.name}. ${site.ogLines.join(' ')}`;
 const otherSite = getSite(other(lang));
 // hreflang alternates for a page that exists in both languages; English is the default.
 const alternates = alternate

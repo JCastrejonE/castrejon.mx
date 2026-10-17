@@ -9,6 +9,8 @@ context: 'Experimento · Caso de estudio de Odoo Launchpad'
 group: agents
 order: 2
 repo: https://github.com/JCastrejonE/launchpad
+ogImage: /research/setup-bake-off/og-figure-1.jpg
+ogImageAlt: 'Las seis páginas que entregaron las configuraciones, en el orden A, B, C, D, E2, F: un campo de flujo y cinco simulaciones del moho mucilaginoso Physarum.'
 links:
   - label: 'Relacionado: el registro de defectos de Launchpad y el modelo de desarrollo que derivé de él'
     href: /es/research/launchpad/

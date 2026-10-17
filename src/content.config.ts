@@ -21,6 +21,9 @@ const essay = (limits: { title: number; description: number; abstract: [number, 
     order: z.number(),
     repo: z.string().url(),
     links: z.array(z.object({ label: z.string().min(1), href: z.string().min(1) })).default([]),
+    // Optional link-preview image for this essay (1200x630, under public/), e.g. made with scripts/og-figure.mjs.
+    ogImage: z.string().startsWith('/').optional(),
+    ogImageAlt: z.string().min(1).optional(),
   });
 
 const research = defineCollection({
