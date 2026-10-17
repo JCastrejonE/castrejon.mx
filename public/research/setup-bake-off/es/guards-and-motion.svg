@@ -9,8 +9,8 @@ text{fill:#000;font-size:14px}
 .h{font-size:15px;font-weight:600}
 .b{font-weight:600}
 .r{stroke:rgba(60,60,67,.29);stroke-width:1;fill:none}
-.a{fill:#3730a3}
-.as{stroke:#3730a3;stroke-width:2;fill:none}
+.a{fill:#05714f}
+.as{stroke:#05714f;stroke-width:2;fill:none}
 .g{fill:#8e8e93}
 .gs{stroke:#8e8e93;stroke-width:2;fill:none}
 </style>

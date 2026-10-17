@@ -6,7 +6,7 @@
 .lpfw .ink{fill:#000}
 .lpfw .sec{fill:#6e6e73}
 .lpfw .hair{stroke:rgba(60,60,67,.29);stroke-width:1;fill:none}
-.lpfw .acc{fill:#3730a3}
+.lpfw .acc{fill:#05714f}
 .lpfw .gry{fill:#8e8e93}
 .lpfw .gry2{fill:#c7c7cc}
 .lpfw .on-acc{fill:#fff}

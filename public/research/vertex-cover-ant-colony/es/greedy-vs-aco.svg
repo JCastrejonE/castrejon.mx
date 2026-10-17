@@ -8,8 +8,8 @@ text{font-family:-apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Robot
 .b{font-weight:600}
 .hair{stroke:rgba(60,60,67,.29);stroke-width:1;fill:none}
 .edge{stroke:#6e6e73;stroke-width:1.25;fill:none}
-.acc{fill:#3730a3}
-.accS{stroke:#3730a3;fill:none}
+.acc{fill:#05714f}
+.accS{stroke:#05714f;fill:none}
 .gry{fill:#6e6e73}
 .gryS{stroke:#6e6e73;fill:none}
 .onacc{fill:#fff}

@@ -6,7 +6,7 @@
 .lptn .ink{fill:#000}
 .lptn .sec{fill:#6e6e73}
 .lptn .hair{stroke:rgba(60,60,67,.29);stroke-width:1;fill:none}
-.lptn .acc{fill:#3730a3}
+.lptn .acc{fill:#05714f}
 .lptn .gry{fill:#8e8e93}
 .lptn .gry2{fill:#c7c7cc}
 .lptn .on-acc{fill:#fff}

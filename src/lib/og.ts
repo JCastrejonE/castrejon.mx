@@ -47,7 +47,7 @@ export async function ogImage(lang: Lang): Promise<Response> {
         },
         {
           type: 'div',
-          props: { style: { marginTop: 56, fontSize: 30, color: '#3730a3' }, children: 'castrejon.mx' },
+          props: { style: { marginTop: 56, fontSize: 30, color: '#05714f' }, children: 'castrejon.mx' },
         },
       ],
     },

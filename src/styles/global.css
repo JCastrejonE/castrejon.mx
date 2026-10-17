@@ -29,9 +29,9 @@
   /* HIG's rgba(60,60,67,.6) is 3.4:1 on white; Apple's web gray #6e6e73 reaches 5.1:1 (4.6:1 on #f2f2f7). */
   --secondary-label: #6e6e73;
   --separator: rgba(60, 60, 67, 0.29);
-  /* The one accent: ink indigo. 9.9:1 on white, 8.9:1 on #f2f2f7. */
-  --link: #3730a3;
-  --link-hover: #4338ca;
+  /* The one accent: emerald. 6.0:1 on white, 5.4:1 on #f2f2f7. */
+  --link: #05714f;
+  --link-hover: #065f46;
   --on-link: #ffffff;
   --button-fill: var(--link);
   --button-fill-hover: var(--link-hover);
@@ -65,13 +65,13 @@
     --label: #ffffff;
     --secondary-label: rgba(235, 235, 245, 0.6);
     --separator: rgba(84, 84, 88, 0.6);
-    /* 10.5:1 on black, 8.5:1 on #1c1c1e. */
-    --link: #a5b4fc;
-    --link-hover: #c7d2fe;
-    /* A deeper fill than the link color keeps the one filled button calm in dark mode: white text 6.3:1. */
+    /* 10.9:1 on black, 8.9:1 on #1c1c1e. */
+    --link: #34d399;
+    --link-hover: #6ee7b7;
+    /* A deeper fill than the link color keeps the one filled button calm in dark mode: white text 5.5:1. */
     --on-link: #ffffff;
-    --button-fill: #4f46e5;
-    --button-fill-hover: #5b54e8;
+    --button-fill: #047857;
+    --button-fill-hover: #05875f;
     --tint: color-mix(in srgb, var(--link) 14%, var(--background));
     --tint-hover: color-mix(in srgb, var(--link) 20%, var(--background));
   }

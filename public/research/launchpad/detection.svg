@@ -6,7 +6,7 @@
 .lpdw .ink{fill:#000}
 .lpdw .sec{fill:#6e6e73}
 .lpdw .hair{stroke:rgba(60,60,67,.29);stroke-width:1;fill:none}
-.lpdw .acc{fill:#3730a3}
+.lpdw .acc{fill:#05714f}
 .lpdw .gry{fill:#8e8e93}
 .lpdw .gry2{fill:#c7c7cc}
 .lpdw .on-acc{fill:#fff}

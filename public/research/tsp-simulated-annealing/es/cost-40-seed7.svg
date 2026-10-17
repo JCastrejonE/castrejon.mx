@@ -6,9 +6,9 @@ text{font-family:-apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Robot
 .sec{fill:#6e6e73}
 .hair{stroke:rgba(60,60,67,.29);stroke-width:1;fill:none}
 .ctx{fill:#c7c7cc}
-.acc{stroke:#3730a3}
-.accf{fill:#3730a3}
-.band{fill:#3730a3;fill-opacity:.28;stroke:#3730a3;stroke-width:.75}
+.acc{stroke:#05714f}
+.accf{fill:#05714f}
+.band{fill:#05714f;fill-opacity:.28;stroke:#05714f;stroke-width:.75}
 .ring{stroke:#fff}
 .inkline{stroke:#000}
 .lab{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}</style>

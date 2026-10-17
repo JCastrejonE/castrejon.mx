@@ -4,8 +4,8 @@ text{font-family:-apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Robot
 .ink{fill:#000}
 .sec{fill:#6e6e73}
 .hair{stroke:rgba(60,60,67,.29)}
-.acc{fill:#3730a3}
-.accs{stroke:#3730a3}
+.acc{fill:#05714f}
+.accs{stroke:#05714f}
 .gray{fill:#6e6e73}
 .grays{stroke:#6e6e73}
 .track{fill:rgba(120,120,128,.16)}

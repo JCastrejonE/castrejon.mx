@@ -9,9 +9,9 @@
 .cg3 .emp{fill:none;stroke:rgba(60,60,67,.29)}
 .cg3 .old{fill:#d1d1d6}
 .cg3 .oldt{fill:#000}
-.cg3 .new{fill:#3730a3}
+.cg3 .new{fill:#05714f}
 .cg3 .newt{fill:#fff}
-.cg3 .acc{fill:#3730a3}
+.cg3 .acc{fill:#05714f}
 .cg3 .lt{font-weight:600;text-anchor:middle}
 .cg3 .b{font-weight:600}
 .cg3 .ar{stroke:#6e6e73;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
